@@ -2,7 +2,8 @@ name: Monitor NTE Russian Voice
 
 on:
   schedule:
-    # Four checks per day. Minute 17 avoids the busiest start-of-hour window.
+    # Four checks per day. Scheduled workflows run from the repository default branch.
+    # Minute 17 avoids the busiest start-of-hour window.
     - cron: "17 1,7,13,19 * * *"
   workflow_dispatch:
 
@@ -13,7 +14,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: nte-voice-monitor
+  group: nte-voice-monitor-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -23,39 +24,59 @@ jobs:
       should_alert: ${{ steps.result.outputs.should_alert }}
       alert_title: ${{ steps.result.outputs.alert_title }}
     steps:
-      - name: Checkout
+      - name: Checkout selected branch
         uses: actions/checkout@v6
         with:
-          fetch-depth: 1
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Show run context
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Event:      $GITHUB_EVENT_NAME"
+          echo "Branch:     $GITHUB_REF_NAME"
+          echo "Commit:     $GITHUB_SHA"
+          git status --short --branch
+
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: "3.13"
           cache: pip
+
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
+
       - name: Run detector tests
         run: python -m pytest -q
+
       - name: Check official sources
         run: python scripts/check_sources.py
+
       - name: Read alert result
         id: result
         shell: bash
         run: |
+          set -euo pipefail
           python - <<'PY' >> "$GITHUB_OUTPUT"
           import json
           from pathlib import Path
+
           result = json.loads(Path("data/run-result.json").read_text(encoding="utf-8"))
           print(f"should_alert={str(bool(result.get('should_alert'))).lower()}")
           title = str(result.get("alert_title", "NTE voice monitor")).replace("\n", " ")
           print(f"alert_title={title}")
           PY
+
       - name: Optional Telegram alert
         continue-on-error: true
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python scripts/notify_telegram.py
+
       - name: Create a verification issue for a new signal
         continue-on-error: true
         if: steps.result.outputs.should_alert == 'true'
@@ -63,29 +84,65 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
+          set -euo pipefail
           gh label create voice-alert --color FFD66B --description "Automated Russian voice-over signal" --force
           OPEN_COUNT=$(gh issue list --state open --label voice-alert --json number --jq 'length')
           if [ "$OPEN_COUNT" = "0" ]; then
             python -c 'import json, pathlib; print(json.loads(pathlib.Path("data/run-result.json").read_text(encoding="utf-8"))["alert_body"])' > /tmp/alert.md
             gh issue create --title "${{ steps.result.outputs.alert_title }}" --label voice-alert --body-file /tmp/alert.md
           fi
-      - name: Commit monitoring history
+
+      - name: Commit monitoring history to selected branch
         shell: bash
+        env:
+          TARGET_BRANCH: ${{ github.ref_name }}
         run: |
+          set -euo pipefail
+
+          if [ -z "$TARGET_BRANCH" ]; then
+            echo "::error::GitHub did not provide github.ref_name; cannot safely choose a target branch."
+            exit 1
+          fi
+
           git config user.name "nte-voice-watch[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/status.json data/evidence.json data/history.json data/crawler_state.json data/run-result.json
+          git add \
+            data/status.json \
+            data/evidence.json \
+            data/history.json \
+            data/crawler_state.json \
+            data/run-result.json
+
           if git diff --cached --quiet; then
-            echo "No data changes"
-          else
-            git commit -m "chore(monitor): update voice status $(date -u +'%Y-%m-%d %H:%M UTC')"
-            git pull --rebase origin main
-            git push
+            echo "No monitoring data changes"
+            exit 0
           fi
+
+          git commit -m "chore(monitor): update voice status $(date -u +'%Y-%m-%d %H:%M UTC')"
+
+          for attempt in 1 2 3; do
+            echo "Push attempt $attempt to origin/$TARGET_BRANCH"
+            if git push origin "HEAD:$TARGET_BRANCH"; then
+              echo "Monitoring history pushed successfully"
+              exit 0
+            fi
+
+            if [ "$attempt" -lt 3 ]; then
+              echo "Remote changed; fetching and rebasing before retry"
+              git fetch origin "$TARGET_BRANCH"
+              git rebase "origin/$TARGET_BRANCH"
+            fi
+          done
+
+          echo "::error::Could not push monitoring data to origin/$TARGET_BRANCH after 3 attempts. Check branch protection and Actions workflow permissions."
+          exit 1
+
       - name: Build static artifact
         run: python scripts/build_site.py
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
@@ -97,6 +154,9 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: monitor
+    concurrency:
+      group: github-pages-deploy
+      cancel-in-progress: false
     steps:
       - name: Deploy updated data
         id: deployment
