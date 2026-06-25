@@ -1,0 +1,29 @@
+name: False positive or missed announcement
+about: Report an incorrect status or a source the monitor missed
+labels: [monitor-review]
+body:
+  - type: dropdown
+    id: type
+    attributes:
+      label: Problem type
+      options:
+        - False positive
+        - Missed official announcement
+        - Broken source/parser
+        - Incorrect translation or wording
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Original source URL
+      placeholder: https://...
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: What is wrong?
+      description: Quote the relevant fragment and explain why the current state is incorrect.
+    validations:
+      required: true

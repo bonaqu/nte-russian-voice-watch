@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bonaqu.github.io/nte-russian-voice-watch/sitemap.xml

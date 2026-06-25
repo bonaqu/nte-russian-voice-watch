@@ -1,0 +1,103 @@
+name: Monitor NTE Russian Voice
+
+on:
+  schedule:
+    # Four checks per day. Minute 17 avoids the busiest start-of-hour window.
+    - cron: "17 1,7,13,19 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: nte-voice-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    outputs:
+      should_alert: ${{ steps.result.outputs.should_alert }}
+      alert_title: ${{ steps.result.outputs.alert_title }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 1
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run detector tests
+        run: python -m pytest -q
+      - name: Check official sources
+        run: python scripts/check_sources.py
+      - name: Read alert result
+        id: result
+        shell: bash
+        run: |
+          python - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          result = json.loads(Path("data/run-result.json").read_text(encoding="utf-8"))
+          print(f"should_alert={str(bool(result.get('should_alert'))).lower()}")
+          title = str(result.get("alert_title", "NTE voice monitor")).replace("\n", " ")
+          print(f"alert_title={title}")
+          PY
+      - name: Optional Telegram alert
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/notify_telegram.py
+      - name: Create a verification issue for a new signal
+        continue-on-error: true
+        if: steps.result.outputs.should_alert == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh label create voice-alert --color FFD66B --description "Automated Russian voice-over signal" --force
+          OPEN_COUNT=$(gh issue list --state open --label voice-alert --json number --jq 'length')
+          if [ "$OPEN_COUNT" = "0" ]; then
+            python -c 'import json, pathlib; print(json.loads(pathlib.Path("data/run-result.json").read_text(encoding="utf-8"))["alert_body"])' > /tmp/alert.md
+            gh issue create --title "${{ steps.result.outputs.alert_title }}" --label voice-alert --body-file /tmp/alert.md
+          fi
+      - name: Commit monitoring history
+        shell: bash
+        run: |
+          git config user.name "nte-voice-watch[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/status.json data/evidence.json data/history.json data/crawler_state.json data/run-result.json
+          if git diff --cached --quiet; then
+            echo "No data changes"
+          else
+            git commit -m "chore(monitor): update voice status $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git pull --rebase origin main
+            git push
+          fi
+      - name: Build static artifact
+        run: python scripts/build_site.py
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: monitor
+    steps:
+      - name: Deploy updated data
+        id: deployment
+        uses: actions/deploy-pages@v4

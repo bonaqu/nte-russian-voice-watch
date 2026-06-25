@@ -1,0 +1,23 @@
+{
+  "id": "./",
+  "name": "NTE Russian Voice Watch",
+  "short_name": "NTE Voice",
+  "description": "Автоматический мониторинг официальной русской озвучки NTE: Neverness to Everness.",
+  "lang": "ru",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#070912",
+  "theme_color": "#090b16",
+  "categories": ["games", "utilities", "news"],
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Текущий статус", "short_name": "Статус", "url": "./", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Обращение к разработчикам", "short_name": "Обращение", "url": "appeal.html", "icons": [{ "src": "assets/icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}

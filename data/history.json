@@ -1,0 +1,17 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-06-21T18:06:40Z",
+  "entries": [
+    {
+      "checked_at": "2026-06-21T18:06:40Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 5,
+      "failed": 0,
+      "changed": false,
+      "elapsed_seconds": 4633600,
+      "evidence_signature": "bundled-baseline"
+    }
+  ]
+}

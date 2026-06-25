@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090b16">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Независимый автоматический мониторинг официальной русской озвучки NTE: Neverness to Everness.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="NTE Russian Voice Watch">
+  <meta property="og:title" content="Сколько дней NTE живёт без русской озвучки?">
+  <meta property="og:description" content="Автоматическая проверка официальных источников, доказательства, история и обращение к разработчикам.">
+  <meta property="og:url" content="https://bonaqu.github.io/nte-russian-voice-watch/">
+  <meta property="og:image" content="https://bonaqu.github.io/nte-russian-voice-watch/assets/og/og-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="NTE Russian Voice Watch — счётчик дней без русской озвучки">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Сколько дней NTE живёт без русской озвучки?">
+  <meta name="twitter:description" content="Автоматический мониторинг официальных источников и обращение к разработчикам.">
+  <meta name="twitter:image" content="https://bonaqu.github.io/nte-russian-voice-watch/assets/og/og-card.png">
+  <link rel="canonical" href="https://bonaqu.github.io/nte-russian-voice-watch/">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <title>NTE Russian Voice Watch</title>
+</head>
+<body>
+  <a class="skip-link" href="#main">К содержанию</a>
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="NTE Russian Voice Watch — главная">
+      <span class="brand-mark" aria-hidden="true"><span></span></span>
+      <span class="brand-copy"><strong>NTE</strong><small>RUSSIAN VOICE WATCH</small></span>
+    </a>
+    <nav class="topnav" aria-label="Основная навигация">
+      <button class="nav-link is-active" data-tab-target="dashboard">Статус</button>
+      <button class="nav-link" data-tab-target="evidence">Источники</button>
+      <button class="nav-link" data-tab-target="history">История</button>
+      <button class="nav-link" data-tab-target="methodology">Методика</button>
+      <a class="nav-link nav-accent" href="appeal.html">Разработчикам ↗</a>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-button" id="installButton" type="button" hidden aria-label="Установить приложение" title="Установить PWA">＋</button>
+      <button class="icon-button" id="shareButton" type="button" aria-label="Поделиться" title="Поделиться">↗</button>
+    </div>
+  </header>
+
+  <main id="main" class="shell">
+    <section id="tab-dashboard" class="tab-panel is-active" data-tab-panel="dashboard">
+      <div class="hero">
+        <div class="eyebrow"><span class="live-dot"></span> НЕЗАВИСИМЫЙ АВТОМОНИТОРИНГ</div>
+        <h1>Сколько времени NTE<br><em>без русской озвучки?</em></h1>
+        <p class="hero-lead">Счётчик идёт с официального релиза. Статус меняется только после проверки официальных источников — без слухов, фанатских дубляжей и подмены «русского текста» озвучкой.</p>
+
+        <div class="status-orbit" id="statusOrbit" data-state="NO_RUSSIAN_VOICE">
+          <div class="orbit-rings" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="status-core">
+            <span class="status-kicker">ТЕКУЩИЙ СТАТУС</span>
+            <strong id="statusLabel">Русской озвучки нет</strong>
+            <span id="confidenceLabel">Уверенность: высокая</span>
+          </div>
+        </div>
+
+        <div class="counter-card glass-panel" aria-label="Время с релиза без русской озвучки">
+          <div class="counter-heading">
+            <div>
+              <span class="micro-label">С РЕЛИЗА NTE</span>
+              <p id="counterContext">без подтверждённой русской озвучки</p>
+            </div>
+            <span class="counter-live"><span></span> LIVE</span>
+          </div>
+          <div class="counter-grid" id="counter" aria-live="polite">
+            <div><strong data-unit="days">000</strong><span>дней</span></div>
+            <div><strong data-unit="hours">00</strong><span>часов</span></div>
+            <div><strong data-unit="minutes">00</strong><span>минут</span></div>
+            <div><strong data-unit="seconds">00</strong><span>секунд</span></div>
+          </div>
+          <div class="progress-line"><span id="milestoneProgress"></span></div>
+          <div class="milestone-row">
+            <span id="milestoneMessage">Следующая аномалия загружается…</span>
+            <strong id="nextMilestone">—</strong>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <button class="primary-button" id="copyStatusButton" type="button"><span>Скопировать статус</span><b>⌘</b></button>
+          <a class="secondary-button" href="appeal.html">Открыть обращение к разработчикам</a>
+        </div>
+      </div>
+
+      <div class="summary-grid">
+        <article class="metric-card glass-panel">
+          <span class="metric-icon positive">文</span>
+          <div><small>РУССКИЙ ТЕКСТ</small><strong id="textStatus">Доступен</strong><p>Интерфейс и субтитры</p></div>
+        </article>
+        <article class="metric-card glass-panel">
+          <span class="metric-icon negative">声</span>
+          <div><small>РУССКИЙ ГОЛОС</small><strong id="voiceStatus">Не анонсирован</strong><p>Полная озвучка</p></div>
+        </article>
+        <article class="metric-card glass-panel">
+          <span class="metric-icon neutral">◎</span>
+          <div><small>ПОСЛЕДНЯЯ ПРОВЕРКА</small><strong id="lastChecked">—</strong><p id="sourceHealth">Загрузка источников…</p></div>
+        </article>
+      </div>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div><span class="micro-label">ДИНАМИКА</span><h2>Дни без русской озвучки</h2></div>
+          <div class="chart-legend"><span class="legend-line"></span> время после релиза</div>
+        </div>
+        <div class="chart-card glass-panel">
+          <canvas id="daysChart" height="320" aria-label="График количества дней после релиза без русской озвучки"></canvas>
+          <div class="chart-empty" id="chartFallback" hidden>Недостаточно данных для графика.</div>
+        </div>
+      </section>
+
+      <section class="split-section section-block">
+        <article class="explain-card glass-panel">
+          <span class="micro-label">ВАЖНОЕ РАЗЛИЧИЕ</span>
+          <h2>Русский текст ≠ русская озвучка</h2>
+          <p>Галочка «Русский» может означать только интерфейс и субтитры. Для дубляжа магазины используют отдельные поля <strong>Full Audio</strong> или <strong>Voice</strong>. Монитор считает озвучку подтверждённой только по этим полям либо по прямому официальному анонсу.</p>
+          <button class="text-button" data-tab-target="methodology">Как устроена защита от ложных срабатываний →</button>
+        </article>
+        <article class="easter-card glass-panel" id="easterCard">
+          <div class="easter-number" id="easterNumber">0</div>
+          <div><span class="micro-label">АНОМАЛИЯ ДНЯ</span><h2 id="easterTitle">Сигнал стабилен</h2><p id="easterText">Этеро продолжает говорить на четырёх языках. Русскоязычные оценщики всё ещё читают глазами.</p></div>
+        </article>
+      </section>
+    </section>
+
+    <section id="tab-evidence" class="tab-panel" data-tab-panel="evidence">
+      <div class="page-heading">
+        <span class="micro-label">ПРОВЕРЯЕМЫЕ ДАННЫЕ</span>
+        <h1>Источники и доказательства</h1>
+        <p>Каждый результат содержит ссылку на оригинал, время проверки, тип сигнала и короткую выдержку. Ошибка загрузки источника не превращается в вывод о наличии или отсутствии озвучки.</p>
+      </div>
+      <div class="filter-bar glass-panel">
+        <label>Фильтр
+          <select id="evidenceFilter">
+            <option value="all">Все источники</option>
+            <option value="official">Официальные новости</option>
+            <option value="stores">Магазины</option>
+            <option value="signals">Только сигналы</option>
+            <option value="errors">Ошибки проверки</option>
+          </select>
+        </label>
+        <span id="evidenceGenerated">—</span>
+      </div>
+      <div class="evidence-list" id="evidenceList" aria-live="polite"></div>
+    </section>
+
+    <section id="tab-history" class="tab-panel" data-tab-panel="history">
+      <div class="page-heading">
+        <span class="micro-label">НЕПРЕРЫВНЫЙ ЖУРНАЛ</span>
+        <h1>История всех проверок</h1>
+        <p>Плановая проверка запускается четыре раза в сутки. История хранит состояние, здоровье источников и отпечаток доказательств — без копирования целых чужих страниц.</p>
+      </div>
+      <div class="history-toolbar glass-panel">
+        <div class="history-stats"><strong id="historyCount">0</strong><span>проверок сохранено</span></div>
+        <label class="toggle"><input type="checkbox" id="changesOnly"><span></span>Только изменения</label>
+      </div>
+      <div class="history-table-wrap glass-panel">
+        <table class="history-table">
+          <thead><tr><th>Дата и время</th><th>Статус</th><th>Источники</th><th>Изменения</th><th>Отпечаток</th></tr></thead>
+          <tbody id="historyTable"></tbody>
+        </table>
+        <button class="secondary-button load-more" id="loadMoreHistory" type="button">Показать ещё</button>
+      </div>
+    </section>
+
+    <section id="tab-methodology" class="tab-panel" data-tab-panel="methodology">
+      <div class="page-heading">
+        <span class="micro-label">КАК ЭТО РАБОТАЕТ</span>
+        <h1>Методика без хайпа</h1>
+        <p>Монитор специально настроен так, чтобы лучше пропустить ранний слух, чем ошибочно объявить русский дубляж.</p>
+      </div>
+      <div class="method-grid">
+        <article class="method-card glass-panel"><span>01</span><h2>Официальный периметр</h2><p>Проверяются региональные сайты NTE на английском, русском, китайском, японском и корейском, а также структурированные языковые поля Steam и PlayStation.</p></article>
+        <article class="method-card glass-panel"><span>02</span><h2>Многоязычные правила</h2><p>Ищутся только явные пары «русский + озвучка/voice/full audio/配音/音声/더빙». Одиночное слово «Russian» не считается доказательством.</p></article>
+        <article class="method-card glass-panel"><span>03</span><h2>Контекст и отрицания</h2><p>Фразы «не поддерживается», «пока недоступна» и аналоги распознаются как отрицательные. Будущее обещание отделяется от уже выпущенной функции.</p></article>
+        <article class="method-card glass-panel"><span>04</span><h2>Структурированные поля</h2><p>Для Steam проверяется отдельная колонка Full Audio. Для PlayStation сравниваются Voice и Screen Languages.</p></article>
+        <article class="method-card glass-panel"><span>05</span><h2>Консервативный статус</h2><p>Неоднозначное совпадение переводит сайт в состояние «возможное упоминание», но не в «озвучка вышла». Для публикации остаётся ссылка на первоисточник.</p></article>
+        <article class="method-card glass-panel"><span>06</span><h2>Отказоустойчивость</h2><p>Сбой одного сайта отображается отдельно. Старый успешный результат помечается как устаревший и не выдаётся за текущую проверку.</p></article>
+      </div>
+      <div class="state-flow glass-panel">
+        <h2>Модель состояний</h2>
+        <div class="flow-row">
+          <span class="flow-state state-red">Нет озвучки</span><i>→</i><span class="flow-state state-yellow">Возможное упоминание</span><i>→</i><span class="flow-state state-blue">Официальный анонс</span><i>→</i><span class="flow-state state-green">Озвучка доступна</span>
+        </div>
+      </div>
+      <div class="repo-cta glass-panel">
+        <div><span class="micro-label">OPEN SOURCE</span><h2>Логику можно проверить</h2><p>Код детектора, список источников, тесты и workflow лежат в открытом репозитории. Никаких платных API и скрытой базы данных.</p></div>
+        <a class="primary-button" href="https://github.com/bonaqu/nte-russian-voice-watch" target="_blank" rel="noopener noreferrer">Открыть GitHub ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Неофициальный общественный проект. Не связан с Hotta Studio, Perfect World Games, Steam или PlayStation.</p>
+    <div><a href="appeal.html">Обращение</a><a href="https://github.com/bonaqu/nte-russian-voice-watch" target="_blank" rel="noopener noreferrer">Исходный код</a><span id="footerVersion">method v1.0.0</span></div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>
