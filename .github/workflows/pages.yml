@@ -2,7 +2,7 @@ name: Deploy GitHub Pages
 
 on:
   push:
-    branches: [main]
+    # The job below checks the repository's actual default branch dynamically.
     paths-ignore:
       - "README.md"
       - "DEPLOYMENT.md"
@@ -16,28 +16,40 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  group: github-pages-deploy
   cancel-in-progress: false
 
 jobs:
   test-build:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      github.ref_name == github.event.repository.default_branch
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout selected branch
         uses: actions/checkout@v6
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 1
+
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: "3.13"
           cache: pip
+
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
+
       - name: Run detector tests
         run: python -m pytest -q
+
       - name: Build static artifact
         run: python scripts/build_site.py
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:
