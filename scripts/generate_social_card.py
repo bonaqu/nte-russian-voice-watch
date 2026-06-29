@@ -7,7 +7,6 @@ import json
 from pathlib import Path
 import math
 import sys
-from textwrap import wrap
 
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
@@ -83,16 +82,6 @@ def draw_mark(im, center, radius, thick=8, accent=(255, 103, 166)):
         d.ellipse((x - 6, y - 6, x + 6, y + 6), fill=(*accent, 230))
 
 
-def fit_font(draw: ImageDraw.ImageDraw, text: str, max_width: int, start: int, min_size: int, bold: bool = True):
-    size = start
-    while size >= min_size:
-        font = f(size, bold)
-        if draw.textlength(text, font=font) <= max_width:
-            return font
-        size -= 2
-    return f(min_size, bold)
-
-
 def draw_wrapped(draw: ImageDraw.ImageDraw, xy, text: str, font: ImageFont.FreeTypeFont, fill, max_width: int, line_gap: int = 8) -> int:
     words = text.split()
     lines: list[str] = []
@@ -148,7 +137,6 @@ def generate_status_card(output: Path) -> None:
     title_font = f(58, True)
     number = f(92, True)
     small = f(23, True)
-    body = f(28, False)
     foot = f(24, False)
 
     d.text((SAFE, 98), "NTE · RUSSIAN VOICE WATCH", font=overline, fill=(177, 157, 255, 255))
@@ -195,7 +183,7 @@ def generate_appeal_card(output: Path) -> None:
     )
 
     y = 474
-    tags = ["RU", "中文", "EN", "한국어", "日本語"]
+    tags = ["RU", "ZH", "EN", "KO", "JA"]
     x = SAFE
     for tag in tags:
         width = int(d.textlength(tag, font=pill)) + 34
