@@ -11,7 +11,7 @@
   }
 
   function applyBrandAssets() {
-    const iconHref = 'assets/brand/nte-site-icon.svg';
+    const iconHref = 'assets/brand/nte-favicon-transparent.svg';
     for (const rel of ['icon', 'shortcut icon']) {
       const link = document.createElement('link');
       link.rel = rel;
