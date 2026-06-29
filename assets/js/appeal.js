@@ -3,6 +3,8 @@
 
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const BRAND_ICON = 'assets/brand/nte-site-icon.svg';
+  const BRAND_SYMBOL = 'assets/brand/nte-symbol.svg';
 
   const SUPPORTED = ['ru', 'zh', 'en', 'ko', 'ja'];
   const CIS_LANGUAGE_PREFIXES = ['ru', 'uk', 'be', 'kk', 'uz', 'ky', 'hy', 'az', 'tg', 'tk', 'mo', 'ro'];
@@ -17,6 +19,26 @@
 
   let activeLanguage = detectLanguage();
   let toastTimer;
+
+  function applyBrandAssets() {
+    for (const rel of ['icon', 'shortcut icon']) {
+      let link = document.querySelector(`link[rel="${rel}"]`);
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = rel;
+        document.head.append(link);
+      }
+      link.href = BRAND_ICON;
+      link.type = 'image/svg+xml';
+      link.sizes = 'any';
+    }
+    if (!document.getElementById('appealBrandStyle')) {
+      const style = document.createElement('style');
+      style.id = 'appealBrandStyle';
+      style.textContent = `.appeal-header .brand{gap:14px!important}.appeal-header .brand-mark{width:48px!important;height:48px!important;border:0!important;border-radius:0!important;display:block!important;place-items:unset!important;transform:none!important;background:url('${BRAND_SYMBOL}') center/contain no-repeat!important;box-shadow:none!important;filter:drop-shadow(0 0 16px rgba(143,120,255,.36)) drop-shadow(0 0 18px rgba(86,217,255,.18))}.appeal-header .brand-mark>span{display:none!important}.appeal-header .brand-copy strong{letter-spacing:.13em}.appeal-header .brand-copy small{letter-spacing:.2em}@media(max-width:700px){.appeal-header .brand-mark{width:42px!important;height:42px!important}}`;
+      document.head.append(style);
+    }
+  }
 
   function normalizeLanguage(value) {
     return String(value || '').toLowerCase().split('-')[0];
@@ -95,6 +117,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    applyBrandAssets();
     $$('[data-lang-button]').forEach((button) => {
       button.addEventListener('click', () => switchLanguage(button.dataset.langButton));
     });
