@@ -1,0 +1,5 @@
+{
+  "provider": "CloudTips",
+  "support_url": "https://pay.cloudtips.ru/p/2fe2c98a",
+  "qr_url": "https://api.cloudtips.ru/api/layouts/qr/2fe2c98a.png"
+}
