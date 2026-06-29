@@ -12,16 +12,18 @@
     "official_local": "2026-04-29 11:00 (UTC+8)",
     "source": "https://nte.perfectworld.com/ru/article/news/gamebroad/20260426/261935.html"
   },
-  "state": "NO_RUSSIAN_VOICE",
-  "state_label_ru": "Русской озвучки нет",
-  "confidence": "high",
-  "last_checked_at": "2026-06-29T08:33:21Z",
-  "last_change_at": "2026-06-21T18:06:40Z",
+  "state": "POSSIBLE_MENTION",
+  "state_label_ru": "Найдено возможное упоминание",
+  "confidence": "medium",
+  "last_checked_at": "2026-06-29T12:09:19Z",
+  "last_change_at": "2026-06-29T12:09:19Z",
   "check_interval_hours": 6,
   "source_health": {
-    "total": 11,
-    "successful": 11,
-    "failed": 0
+    "total": 41,
+    "successful": 30,
+    "failed": 11,
+    "official_or_store": 26,
+    "non_official_watch": 15
   },
   "russian_text": {
     "supported": true,
@@ -30,7 +32,7 @@
   "russian_voice": {
     "supported": false,
     "announced": false,
-    "label": "Русской озвучки нет"
+    "label": "Найдено возможное упоминание"
   },
   "known_voice_languages": [
     "Chinese",
@@ -39,7 +41,7 @@
     "Korean"
   ],
   "confirmed_event": null,
-  "state_changed": false,
-  "methodology_version": "1.0.0",
-  "evidence_signature": "b6606f06d010395e48111275c1bde51590dd8b0e1f08502bf221856a5fdb489b"
+  "state_changed": true,
+  "methodology_version": "1.1.0",
+  "evidence_signature": "25ab68158210b800f947b9fabde92f56a79fa5d5a50e2b164d1903d272b47a4a"
 }

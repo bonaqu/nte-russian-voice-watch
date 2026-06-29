@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-06-29T08:33:21Z",
+  "generated_at": "2026-06-29T12:09:19Z",
   "entries": [
     {
       "checked_at": "2026-06-21T18:06:40Z",
@@ -188,6 +188,17 @@
       "changed": false,
       "elapsed_seconds": 5290401,
       "evidence_signature": "b6606f06d010395e"
+    },
+    {
+      "checked_at": "2026-06-29T12:09:19Z",
+      "state": "POSSIBLE_MENTION",
+      "state_label_ru": "Найдено возможное упоминание",
+      "confidence": "medium",
+      "successful": 30,
+      "failed": 11,
+      "changed": true,
+      "elapsed_seconds": 5303359,
+      "evidence_signature": "25ab68158210b800"
     }
   ]
 }
