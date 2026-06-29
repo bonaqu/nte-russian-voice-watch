@@ -27,7 +27,7 @@
     <circle cx="90" cy="90" r="4.5" fill="url(#core)" stroke="none"/>
   </g>
   <g filter="url(#textGlow)" fill="#f6f7ff" font-family="Bahnschrift, 'Segoe UI Variable', 'Segoe UI', Arial, sans-serif">
-    <text x="205" y="78" font-size="54" font-weight="800" letter-spacing="9">NTE</text>
-    <text x="207" y="124" font-size="24" font-weight="500" letter-spacing="15" fill="#dfe3f7">RUSSIAN VOICE WATCH</text>
+    <text x="205" y="87" font-size="54" font-weight="800" letter-spacing="9">NTE</text>
+    <text x="207" y="133" font-size="24" font-weight="500" letter-spacing="15" fill="#dfe3f7">RUSSIAN VOICE WATCH</text>
   </g>
 </svg>
