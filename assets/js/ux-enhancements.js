@@ -2,6 +2,7 @@
   'use strict';
   const RELEASE = new Date('2026-04-29T03:00:00Z');
   const $ = (s, r = document) => r.querySelector(s);
+
   for (const href of ['assets/css/ux-prod.css', 'assets/css/final-polish.css']) {
     const css = document.createElement('link');
     css.rel = 'stylesheet';
@@ -26,18 +27,18 @@
       faqLead: 'Только полезная информация для пользователей.',
       rumorQ: 'Почему слухи не меняют статус?',
       rumorA: 'Слух, пост или поисковая выдача могут быть ошибкой или пересказом. Они попадают только в watchlist; главный статус меняется после официального анонса или поля Full Audio / Voice.',
-      helpQ: 'Как помочь проекту?',
-      helpA: 'Делитесь ссылкой на сайт, отправляйте обращение разработчикам вежливо и без спама, не выдавайте слухи за факт.',
       confirmQ: 'Что считается подтверждением?',
       confirmA: 'Прямой официальный анонс NTE / Perfect World / Hotta Studio или русский язык в отдельном поле Full Audio / Voice на официальной площадке.',
+      helpQ: 'Как помочь проекту?',
+      helpSite: 'Делитесь ссылкой на сайт.',
+      helpAppeal: 'Отправляйте обращение разработчикам вежливо и без спама.',
+      helpSupport: 'Если хотите поддержать проект, это можно сделать по',
+      helpLink: 'ссылке',
       line: 'Ключевые отметки',
       lineLead: 'Релиз, важные рубежи и текущий день.',
       release: 'Релиз',
       today: 'Сегодня',
-      days: 'дней',
-      donateTitle: 'Поддержать проект',
-      donateText: 'Если проект вам оказался интересным или полезным, или вы просто хотите поддержать проект, это можно сделать по',
-      donateLink: 'ссылке'
+      days: 'дней'
     },
     en: {
       locale: 'en-US',
@@ -55,18 +56,18 @@
       faqLead: 'Useful information for visitors.',
       rumorQ: 'Why do rumors not change the status?',
       rumorA: 'A rumor, post, or search result may be wrong or copied. It can only appear in watchlist; the main status changes after an official announcement or Full Audio / Voice field.',
-      helpQ: 'How can I help?',
-      helpA: 'Share the site, send the appeal politely without spam, and do not present rumors as facts.',
       confirmQ: 'What counts as confirmation?',
       confirmA: 'A direct official announcement from NTE / Perfect World / Hotta Studio or Russian appearing in a separate Full Audio / Voice field on an official platform.',
+      helpQ: 'How can I help?',
+      helpSite: 'Share the site link.',
+      helpAppeal: 'Send the appeal politely and without spam.',
+      helpSupport: 'If you want to support the project, you can do it via this',
+      helpLink: 'link',
       line: 'Key milestones',
       lineLead: 'Release, milestones, and today.',
       release: 'Release',
       today: 'Today',
-      days: 'days',
-      donateTitle: 'Support the project',
-      donateText: 'If the project is interesting or useful to you, or you simply want to support it, you can do it via this',
-      donateLink: 'link'
+      days: 'days'
     }
   };
   dict.zh = { ...dict.en, locale: 'zh-CN', last: '最后检查', faq: '常见问题', line: '关键节点', release: '上线', today: '今天', days: '天' };
@@ -109,30 +110,28 @@
     card.innerHTML = `<div class="ux-panel-head"><div><span class="micro-label">TIMELINE</span><h2>${esc(t('line'))}</h2><p>${esc(t('lineLead'))}</p></div></div><div class="ux-timeline"><div class="ux-timeline-track"><span class="ux-timeline-fill" style="width:${fill}%"></span></div><div class="ux-timeline-items">${marks.map(m => `<article class="ux-timeline-item"><b>${m === 0 ? t('release') : m === d ? t('today') : m + ' ' + t('days')}</b><span>${after(m)}</span></article>`).join('')}</div></div>`;
   }
 
-  function renderFaq() {
+  function supportCard(meta) {
+    const support = meta?.support_url ? `${esc(t('helpSupport'))} <a href="${esc(meta.support_url)}" target="_blank" rel="noopener noreferrer">${esc(t('helpLink'))}</a>.` : '';
+    const qr = meta?.qr_url ? `<a class="ux-faq-qr" href="${esc(meta.support_url)}" target="_blank" rel="noopener noreferrer"><img src="${esc(meta.qr_url)}" alt="QR" loading="lazy"></a>` : '';
+    return `<article class="ux-faq-card ux-faq-support"><div class="ux-faq-support-copy"><h3>${esc(t('helpQ'))}</h3><ul><li>${esc(t('helpSite'))}</li><li>${esc(t('helpAppeal'))}</li>${support ? `<li>${support}</li>` : ''}</ul></div>${qr}</article>`;
+  }
+
+  function renderFaq(meta) {
     const n = $('#uxFaqPanel');
     if (!n) return;
-    n.innerHTML = `<section class="ux-panel glass-panel"><div class="ux-panel-head"><div><span class="micro-label">FAQ</span><h2>${esc(t('faq'))}</h2><p>${esc(t('faqLead'))}</p></div></div><div class="ux-faq-grid"><article class="ux-faq-card"><h3>${esc(t('rumorQ'))}</h3><p>${esc(t('rumorA'))}</p></article><article class="ux-faq-card"><h3>${esc(t('confirmQ'))}</h3><p>${esc(t('confirmA'))}</p></article><article class="ux-faq-card"><h3>${esc(t('helpQ'))}</h3><p>${esc(t('helpA'))}</p></article></div></section>`;
+    n.innerHTML = `<section class="ux-panel glass-panel"><div class="ux-panel-head"><div><span class="micro-label">FAQ</span><h2>${esc(t('faq'))}</h2><p>${esc(t('faqLead'))}</p></div></div><div class="ux-faq-grid"><article class="ux-faq-card"><h3>${esc(t('rumorQ'))}</h3><p>${esc(t('rumorA'))}</p></article><article class="ux-faq-card"><h3>${esc(t('confirmQ'))}</h3><p>${esc(t('confirmA'))}</p></article>${supportCard(meta)}</div></section>`;
   }
 
-  function renderDonation(meta) {
-    const oldShare = $('#uxSharePanel');
-    if (oldShare) { oldShare.innerHTML = ''; oldShare.style.display = 'none'; }
-    $('#uxBottomPanel')?.remove();
-    $('#uxBackingPanel')?.remove();
-    if (!meta?.support_url) return;
-    const host = $('#uxFaqPanel');
-    if (!host) return;
-    let n = $('#uxDonationPanel');
-    if (!n) { n = document.createElement('div'); n.id = 'uxDonationPanel'; n.className = 'ux-slot'; host.after(n); }
-    n.innerHTML = `<section class="ux-donation-mini glass-panel"><div><span class="micro-label">SUPPORT</span><p>${esc(t('donateText'))} <a href="${esc(meta.support_url)}" target="_blank" rel="noopener noreferrer">${esc(t('donateLink'))}</a>.</p></div>${meta.qr_url ? `<a class="ux-donation-qr" href="${esc(meta.support_url)}" target="_blank" rel="noopener noreferrer"><img src="${esc(meta.qr_url)}" alt="QR" loading="lazy"></a>` : ''}</section>`;
-  }
-
-  let status = null, donation = null;
+  let status = null, support = null;
   async function boot() {
     status = await readJson('data/status.json').catch(() => ({ state: 'UNKNOWN', state_label_ru: 'Статус временно не подтверждён', source_health: {} }));
-    donation = await readJson('assets/config/project.json').catch(() => null);
-    const all = () => { renderStatus(status); renderTimeline(status); renderFaq(); renderDonation(donation); };
+    support = await readJson('assets/config/project.json').catch(() => null);
+    const staleShare = $('#uxSharePanel');
+    if (staleShare) { staleShare.innerHTML = ''; staleShare.style.display = 'none'; }
+    $('#uxBottomPanel')?.remove();
+    $('#uxBackingPanel')?.remove();
+    $('#uxDonationPanel')?.remove();
+    const all = () => { renderStatus(status); renderTimeline(status); renderFaq(support); };
     all();
     new MutationObserver(all).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
   }
