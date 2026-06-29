@@ -1,13 +1,13 @@
-const CACHE_VERSION = 'nte-voice-v1.0.0';
+const CACHE_VERSION = 'nte-voice-v1.1.0';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const STATIC_ASSETS = [
   './', './index.html', './appeal.html', './manifest.webmanifest',
-  './assets/css/styles.css', './assets/css/appeal.css',
+  './assets/css/styles.css', './assets/css/appeal.css', './assets/css/i18n.css',
   './assets/js/app.js', './assets/js/appeal.js',
   './assets/icons/icon-192.png', './assets/icons/icon-512.png',
   './assets/icons/icon-maskable-512.png', './assets/icons/apple-touch-icon.png',
-  './assets/og/og-card.png',
+  './assets/og/og-card.png', './assets/og/appeal-card.png',
   './data/status.json', './data/evidence.json', './data/history.json'
 ];
 
