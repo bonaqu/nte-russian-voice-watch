@@ -29,6 +29,8 @@
       rumorA: 'Слух, пост или поисковая выдача могут быть ошибкой или пересказом. Они попадают только в watchlist; главный статус меняется после официального анонса или поля Full Audio / Voice.',
       confirmQ: 'Что считается подтверждением?',
       confirmA: 'Прямой официальный анонс NTE / Perfect World / Hotta Studio или русский язык в отдельном поле Full Audio / Voice на официальной площадке.',
+      signalQ: 'Нашли упоминание?',
+      signalA: 'Лучше сверить первоисточник: официальный сайт, Steam, PlayStation или другое store-поле. Неофициальная новость — это сигнал для проверки, но не факт.',
       helpQ: 'Как помочь проекту?',
       helpSite: 'Делитесь ссылкой на сайт.',
       helpAppeal: 'Отправляйте обращение разработчикам вежливо и без спама.',
@@ -58,6 +60,8 @@
       rumorA: 'A rumor, post, or search result may be wrong or copied. It can only appear in watchlist; the main status changes after an official announcement or Full Audio / Voice field.',
       confirmQ: 'What counts as confirmation?',
       confirmA: 'A direct official announcement from NTE / Perfect World / Hotta Studio or Russian appearing in a separate Full Audio / Voice field on an official platform.',
+      signalQ: 'Found a mention?',
+      signalA: 'Check the primary source first: official site, Steam, PlayStation, or another store voice field. A non-official article is a signal to verify, not a fact.',
       helpQ: 'How can I help?',
       helpSite: 'Share the site link.',
       helpAppeal: 'Send the appeal politely and without spam.',
@@ -119,7 +123,7 @@
   function renderFaq(meta) {
     const n = $('#uxFaqPanel');
     if (!n) return;
-    n.innerHTML = `<section class="ux-panel glass-panel"><div class="ux-panel-head"><div><span class="micro-label">FAQ</span><h2>${esc(t('faq'))}</h2><p>${esc(t('faqLead'))}</p></div></div><div class="ux-faq-grid"><article class="ux-faq-card"><h3>${esc(t('rumorQ'))}</h3><p>${esc(t('rumorA'))}</p></article><article class="ux-faq-card"><h3>${esc(t('confirmQ'))}</h3><p>${esc(t('confirmA'))}</p></article>${supportCard(meta)}</div></section>`;
+    n.innerHTML = `<section class="ux-panel glass-panel"><div class="ux-panel-head"><div><span class="micro-label">FAQ</span><h2>${esc(t('faq'))}</h2><p>${esc(t('faqLead'))}</p></div></div><div class="ux-faq-grid"><article class="ux-faq-card"><h3>${esc(t('rumorQ'))}</h3><p>${esc(t('rumorA'))}</p></article><article class="ux-faq-card"><h3>${esc(t('confirmQ'))}</h3><p>${esc(t('confirmA'))}</p></article><article class="ux-faq-card"><h3>${esc(t('signalQ'))}</h3><p>${esc(t('signalA'))}</p></article>${supportCard(meta)}</div></section>`;
   }
 
   let status = null, support = null;
