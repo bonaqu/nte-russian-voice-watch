@@ -34,6 +34,12 @@
 .language-switch button:active {
   transform: translateY(1px) scale(.98);
 }
+.status-orbit {
+  margin-bottom: 22px;
+}
+.chart-empty[hidden] {
+  display: none !important;
+}
 .shell,
 .footer,
 .topnav,
@@ -69,6 +75,7 @@ html[lang="ko"] .nav-link {
   .language-switch button { min-width: 31px; padding: 6px 7px; border-radius: 8px; font-size: 9px; }
   .top-actions .language-switch { max-width: 152px; }
   .icon-button { width: 34px; height: 34px; border-radius: 10px; }
+  .status-orbit { margin-top: 4px; margin-bottom: 8px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .shell, .footer, .topnav, .status-core, .toast, .language-switch button { transition: none !important; }
