@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "request_delay_seconds": 0.18,
+  "request_delay_seconds": 0.22,
   "sources": [
     {
       "id": "nte-official-en",
@@ -11,9 +11,9 @@
       "language": "en",
       "authority": 1,
       "discover_articles": true,
-      "max_discovered_links": 12,
-      "refresh_recent_links": 3,
-      "max_article_fetches_per_run": 5
+      "max_discovered_links": 30,
+      "refresh_recent_links": 8,
+      "max_article_fetches_per_run": 12
     },
     {
       "id": "nte-official-ru",
@@ -24,9 +24,9 @@
       "language": "ru",
       "authority": 1,
       "discover_articles": true,
-      "max_discovered_links": 12,
-      "refresh_recent_links": 3,
-      "max_article_fetches_per_run": 5
+      "max_discovered_links": 30,
+      "refresh_recent_links": 8,
+      "max_article_fetches_per_run": 12
     },
     {
       "id": "nte-official-cn",
@@ -37,9 +37,9 @@
       "language": "zh-CN",
       "authority": 1,
       "discover_articles": true,
-      "max_discovered_links": 12,
-      "refresh_recent_links": 3,
-      "max_article_fetches_per_run": 5
+      "max_discovered_links": 30,
+      "refresh_recent_links": 8,
+      "max_article_fetches_per_run": 12
     },
     {
       "id": "nte-official-jp",
@@ -50,9 +50,9 @@
       "language": "ja",
       "authority": 1,
       "discover_articles": true,
-      "max_discovered_links": 12,
-      "refresh_recent_links": 3,
-      "max_article_fetches_per_run": 5
+      "max_discovered_links": 30,
+      "refresh_recent_links": 8,
+      "max_article_fetches_per_run": 12
     },
     {
       "id": "nte-official-kr",
@@ -63,19 +63,59 @@
       "language": "ko",
       "authority": 1,
       "discover_articles": true,
-      "max_discovered_links": 12,
-      "refresh_recent_links": 3,
-      "max_article_fetches_per_run": 5
+      "max_discovered_links": 30,
+      "refresh_recent_links": 8,
+      "max_article_fetches_per_run": 12
     },
     {
-      "id": "steam-global",
-      "title": "Steam language metadata",
+      "id": "steam-global-en",
+      "title": "Steam language metadata — English UI",
       "url": "https://store.steampowered.com/app/4508340/NTE_Neverness_to_Everness/?l=english&cc=us",
       "kind": "steam",
       "category": "store_steam",
       "language": "en",
       "authority": 1,
       "baseline_excerpt": "Steam lists Russian interface and subtitles, but not Russian Full Audio."
+    },
+    {
+      "id": "steam-global-ru",
+      "title": "Steam language metadata — Russian UI",
+      "url": "https://store.steampowered.com/app/4508340/NTE_Neverness_to_Everness/?l=russian&cc=ru",
+      "kind": "steam",
+      "category": "store_steam",
+      "language": "ru",
+      "authority": 1,
+      "baseline_excerpt": "Steam localized page is checked through the structured Full Audio column."
+    },
+    {
+      "id": "steam-global-cn",
+      "title": "Steam language metadata — Simplified Chinese UI",
+      "url": "https://store.steampowered.com/app/4508340/NTE_Neverness_to_Everness/?l=schinese&cc=cn",
+      "kind": "steam",
+      "category": "store_steam",
+      "language": "zh-CN",
+      "authority": 1,
+      "baseline_excerpt": "Steam localized page is checked through the structured Full Audio column."
+    },
+    {
+      "id": "steam-global-jp",
+      "title": "Steam language metadata — Japanese UI",
+      "url": "https://store.steampowered.com/app/4508340/NTE_Neverness_to_Everness/?l=japanese&cc=jp",
+      "kind": "steam",
+      "category": "store_steam",
+      "language": "ja",
+      "authority": 1,
+      "baseline_excerpt": "Steam localized page is checked through the structured Full Audio column."
+    },
+    {
+      "id": "steam-global-kr",
+      "title": "Steam language metadata — Korean UI",
+      "url": "https://store.steampowered.com/app/4508340/NTE_Neverness_to_Everness/?l=koreana&cc=kr",
+      "kind": "steam",
+      "category": "store_steam",
+      "language": "ko",
+      "authority": 1,
+      "baseline_excerpt": "Steam localized page is checked through the structured Full Audio column."
     },
     {
       "id": "playstation-us",
@@ -86,6 +126,36 @@
       "language": "en",
       "authority": 1,
       "baseline_excerpt": "PlayStation lists Chinese, English, Japanese and Korean voices; Russian is a screen language."
+    },
+    {
+      "id": "playstation-gb",
+      "title": "PlayStation Store — United Kingdom",
+      "url": "https://www.playstation.com/en-gb/games/nte-neverness-to-everness/",
+      "kind": "playstation",
+      "category": "store_playstation",
+      "language": "en-GB",
+      "authority": 1,
+      "baseline_excerpt": "PlayStation regional metadata is checked through Voice vs Screen Languages."
+    },
+    {
+      "id": "playstation-de",
+      "title": "PlayStation Store — Germany",
+      "url": "https://www.playstation.com/de-de/games/nte-neverness-to-everness/",
+      "kind": "playstation",
+      "category": "store_playstation",
+      "language": "de",
+      "authority": 1,
+      "baseline_excerpt": "PlayStation regional metadata is checked through Voice vs Screen Languages."
+    },
+    {
+      "id": "playstation-fr",
+      "title": "PlayStation Store — France",
+      "url": "https://www.playstation.com/fr-fr/games/nte-neverness-to-everness/",
+      "kind": "playstation",
+      "category": "store_playstation",
+      "language": "fr",
+      "authority": 1,
+      "baseline_excerpt": "PlayStation regional metadata is checked through Voice vs Screen Languages."
     },
     {
       "id": "playstation-jp",
@@ -109,7 +179,7 @@
     },
     {
       "id": "official-language-baseline-en",
-      "title": "Official Co-Ex Test language announcement",
+      "title": "Official Co-Ex Test language announcement — English",
       "url": "https://nte.perfectworld.com/en/article/news/gamebroad/20260203/260715.html",
       "kind": "general",
       "category": "official_baseline",
@@ -118,15 +188,95 @@
       "baseline_excerpt": "Game Languages include Russian; Voice-Over Languages are English, Japanese, Korean and Chinese."
     },
     {
+      "id": "official-language-baseline-ru",
+      "title": "Official Co-Ex Test language announcement — Russian region",
+      "url": "https://nte.perfectworld.com/ru/article/news/gamebroad/20260203/260715.html",
+      "kind": "general",
+      "category": "official_baseline",
+      "language": "ru",
+      "authority": 1,
+      "baseline_excerpt": "Language baseline page is checked for explicit Russian voice-over wording, not generic Russian text support."
+    },
+    {
+      "id": "official-language-baseline-cn",
+      "title": "Official Co-Ex Test language announcement — Chinese region",
+      "url": "https://nte.perfectworld.com/cn/article/news/gamebroad/20260203/260715.html",
+      "kind": "general",
+      "category": "official_baseline",
+      "language": "zh-CN",
+      "authority": 1,
+      "baseline_excerpt": "Language baseline page is checked for explicit Russian voice-over wording, not generic Russian text support."
+    },
+    {
+      "id": "official-language-baseline-jp",
+      "title": "Official Co-Ex Test language announcement — Japanese region",
+      "url": "https://nte.perfectworld.com/jp/article/news/gamebroad/20260203/260715.html",
+      "kind": "general",
+      "category": "official_baseline",
+      "language": "ja",
+      "authority": 1,
+      "baseline_excerpt": "Language baseline page is checked for explicit Russian voice-over wording, not generic Russian text support."
+    },
+    {
+      "id": "official-language-baseline-kr",
+      "title": "Official Co-Ex Test language announcement — Korean region",
+      "url": "https://nte.perfectworld.com/kr/article/news/gamebroad/20260203/260715.html",
+      "kind": "general",
+      "category": "official_baseline",
+      "language": "ko",
+      "authority": 1,
+      "baseline_excerpt": "Language baseline page is checked for explicit Russian voice-over wording, not generic Russian text support."
+    },
+    {
       "id": "official-release-faq-ru",
-      "title": "Official NTE release FAQ",
+      "title": "Official NTE release FAQ — Russian",
       "url": "https://nte.perfectworld.com/ru/article/news/gamebroad/20260426/261935.html",
       "kind": "general",
       "category": "official_baseline",
       "language": "ru",
       "authority": 1,
       "baseline_excerpt": "NTE launched on 29 April 2026 at 11:00 UTC+8."
+    },
+    {
+      "id": "official-release-faq-en",
+      "title": "Official NTE release FAQ — English region",
+      "url": "https://nte.perfectworld.com/en/article/news/gamebroad/20260426/261935.html",
+      "kind": "general",
+      "category": "official_baseline",
+      "language": "en",
+      "authority": 1,
+      "baseline_excerpt": "Release FAQ is checked for voice-over changes and launch-date context."
+    },
+    {
+      "id": "official-release-faq-cn",
+      "title": "Official NTE release FAQ — Chinese region",
+      "url": "https://nte.perfectworld.com/cn/article/news/gamebroad/20260426/261935.html",
+      "kind": "general",
+      "category": "official_baseline",
+      "language": "zh-CN",
+      "authority": 1,
+      "baseline_excerpt": "Release FAQ is checked for voice-over changes and launch-date context."
+    },
+    {
+      "id": "official-release-faq-jp",
+      "title": "Official NTE release FAQ — Japanese region",
+      "url": "https://nte.perfectworld.com/jp/article/news/gamebroad/20260426/261935.html",
+      "kind": "general",
+      "category": "official_baseline",
+      "language": "ja",
+      "authority": 1,
+      "baseline_excerpt": "Release FAQ is checked for voice-over changes and launch-date context."
+    },
+    {
+      "id": "official-release-faq-kr",
+      "title": "Official NTE release FAQ — Korean region",
+      "url": "https://nte.perfectworld.com/kr/article/news/gamebroad/20260426/261935.html",
+      "kind": "general",
+      "category": "official_baseline",
+      "language": "ko",
+      "authority": 1,
+      "baseline_excerpt": "Release FAQ is checked for voice-over changes and launch-date context."
     }
   ],
-  "max_workers": 6
+  "max_workers": 8
 }
