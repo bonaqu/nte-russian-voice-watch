@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 STATUS_PATH = DATA / "status.json"
 EVIDENCE_PATH = DATA / "evidence.json"
+HISTORY_PATH = DATA / "history.json"
 RUN_RESULT_PATH = DATA / "run-result.json"
 TRUSTED_AUTHORITY_MAX = check_sources.TRUSTED_AUTHORITY_MAX
 
@@ -26,9 +27,15 @@ def trusted_only_state(results: list[dict]):
     return choose_overall_state(trusted)
 
 
+def public_signature(results: list[dict]) -> str:
+    meaningful = [check_sources.meaningful_signature(r) for r in results]
+    return check_sources.sha256("\n".join(sorted(meaningful)))
+
+
 def postprocess_public_outputs() -> None:
     status = json.loads(STATUS_PATH.read_text(encoding="utf-8"))
     evidence = json.loads(EVIDENCE_PATH.read_text(encoding="utf-8"))
+    history = json.loads(HISTORY_PATH.read_text(encoding="utf-8"))
     run_result = json.loads(RUN_RESULT_PATH.read_text(encoding="utf-8"))
 
     results = evidence.get("results", [])
@@ -39,10 +46,12 @@ def postprocess_public_outputs() -> None:
     trusted_failed = len(trusted) - trusted_ok
     watch_ok = sum(1 for r in watch if r.get("ok"))
     watch_signals = [r for r in watch if r.get("ok") and r.get("classification") in {"possible", "announced", "released"}]
+    public_results = [*trusted, *watch_signals]
+    signature = public_signature(public_results)
 
     # Hide failed optional watchlist pages from the public evidence list. Official/store
     # errors stay visible because they are relevant to trust and freshness.
-    evidence["results"] = [r for r in results if int(r.get("authority", 3)) <= TRUSTED_AUTHORITY_MAX or r in watch_signals]
+    evidence["results"] = public_results
     evidence["methodology"] = (
         "Public status is based only on official sources and store metadata. "
         "Community/media sources are watchlist-only: they may surface an unverified signal, "
@@ -56,6 +65,19 @@ def postprocess_public_outputs() -> None:
     status["source_health"]["non_official_watch"] = len(watch)
     status["source_health"]["non_official_successful"] = watch_ok
     status["source_health"]["unverified_watch_signals"] = len(watch_signals)
+    status["evidence_signature"] = signature
+
+    entries = history.get("entries", [])
+    if entries:
+        current = entries[-1]
+        previous = entries[-2] if len(entries) > 1 else None
+        current["evidence_signature"] = signature[:16]
+        current["successful"] = trusted_ok
+        current["failed"] = trusted_failed
+        if previous:
+            current["changed"] = current.get("state") != previous.get("state") or current.get("evidence_signature") != previous.get("evidence_signature")
+        else:
+            current["changed"] = bool(status.get("state_changed"))
 
     # Do not notify from watchlist-only noise. If a community source saw something,
     # it remains visible as an unverified signal in Evidence, but not as a fact alert.
@@ -67,6 +89,7 @@ def postprocess_public_outputs() -> None:
 
     STATUS_PATH.write_text(json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     EVIDENCE_PATH.write_text(json.dumps(evidence, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    HISTORY_PATH.write_text(json.dumps(history, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     RUN_RESULT_PATH.write_text(json.dumps(run_result, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
