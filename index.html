@@ -27,6 +27,7 @@
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
   <link rel="stylesheet" href="assets/css/styles.css">
   <link rel="stylesheet" href="assets/css/i18n.css">
+  <link rel="stylesheet" href="assets/css/ux.css">
   <title>NTE Russian Voice Watch</title>
 </head>
 <body>
@@ -118,6 +119,9 @@
         </article>
       </div>
 
+      <div id="uxStatusPanel" class="ux-slot" aria-live="polite"></div>
+      <div id="uxSharePanel" class="ux-slot"></div>
+
       <section class="section-block">
         <div class="section-heading">
           <div><span class="micro-label" data-i18n="dynamics">ДИНАМИКА</span><h2 data-i18n="daysWithoutVoice">Дни без русской озвучки</h2></div>
@@ -141,6 +145,8 @@
           <div><span class="micro-label" data-i18n="dayAnomaly">АНОМАЛИЯ ДНЯ</span><h2 id="easterTitle">Сигнал стабилен</h2><p id="easterText">Этеро продолжает говорить на четырёх языках. Русскоязычные оценщики всё ещё читают глазами.</p></div>
         </article>
       </section>
+
+      <div id="uxFaqPanel" class="ux-slot"></div>
     </section>
 
     <section id="tab-evidence" class="tab-panel" data-tab-panel="evidence">
@@ -217,5 +223,6 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="assets/js/app.js" defer></script>
+  <script src="assets/js/ux-enhancements.js" defer></script>
 </body>
 </html>
