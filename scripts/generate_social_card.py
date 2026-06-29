@@ -66,7 +66,6 @@ def draw_background() -> Image.Image:
     for y in range(0, H, 50):
         d.line((0, y, W, y), fill=(255, 255, 255, 9), width=1)
     d.rounded_rectangle(CARD, radius=34, fill=(11, 15, 30, 212), outline=(166, 145, 255, 62), width=2)
-    d.line((SAFE, H - SAFE, W - SAFE, H - SAFE), fill=(166, 145, 255, 28), width=1)
     return im
 
 
@@ -137,7 +136,6 @@ def generate_status_card(output: Path) -> None:
     title_font = f(58, True)
     number = f(92, True)
     small = f(23, True)
-    foot = f(24, False)
 
     d.text((SAFE, 98), "NTE · RUSSIAN VOICE WATCH", font=overline, fill=(177, 157, 255, 255))
     d.text((SAFE, 154), "Сколько времени NTE", font=title_font, fill=(246, 247, 255, 255))
@@ -151,8 +149,6 @@ def generate_status_card(output: Path) -> None:
     d.rounded_rectangle((SAFE, pill_y, 742, pill_y + 58), radius=15, fill=(*accent, 26), outline=(*accent, 105), width=2)
     d.text((SAFE + 24, pill_y + 16), state_line, font=small, fill=(*accent, 255))
 
-    footer = "Official sources · Store metadata · History log"
-    d.text((SAFE, 552), footer, font=foot, fill=(163, 171, 201, 255))
     output.parent.mkdir(parents=True, exist_ok=True)
     im.convert("RGB").save(output, quality=94, optimize=True)
 
@@ -166,7 +162,6 @@ def generate_appeal_card(output: Path) -> None:
     title = f(60, True)
     body = f(29, False)
     pill = f(23, True)
-    foot = f(24, False)
 
     d.text((SAFE, 98), "NTE · RUSSIAN VOICE APPEAL", font=overline, fill=(177, 157, 255, 255))
     d.text((SAFE, 158), "Почему NTE", font=title, fill=(246, 247, 255, 255))
@@ -182,7 +177,7 @@ def generate_appeal_card(output: Path) -> None:
         line_gap=9,
     )
 
-    y = 474
+    y = 492
     tags = ["RU", "ZH", "EN", "KO", "JA"]
     x = SAFE
     for tag in tags:
@@ -191,7 +186,6 @@ def generate_appeal_card(output: Path) -> None:
         d.text((x + 17, y + 12), tag, font=pill, fill=(246, 247, 255, 255))
         x += width + 12
 
-    d.text((SAFE, 552), "Reasoned request · Demand assessment · Full official voice pack", font=foot, fill=(163, 171, 201, 255))
     output.parent.mkdir(parents=True, exist_ok=True)
     im.convert("RGB").save(output, quality=94, optimize=True)
 
