@@ -10,6 +10,19 @@
     document.head.append(css);
   }
 
+  function applyBrandAssets() {
+    const iconHref = 'assets/brand/nte-site-icon.svg';
+    for (const rel of ['icon', 'shortcut icon']) {
+      const link = document.createElement('link');
+      link.rel = rel;
+      link.type = 'image/svg+xml';
+      link.sizes = 'any';
+      link.href = iconHref;
+      document.head.append(link);
+    }
+  }
+  applyBrandAssets();
+
   const dict = {
     ru: {
       locale: 'ru-RU',
