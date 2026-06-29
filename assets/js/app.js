@@ -400,8 +400,11 @@
     $$('[data-i18n]').forEach((node) => { node.textContent = t(node.dataset.i18n); });
     $$('[data-i18n-html]').forEach((node) => { node.innerHTML = t(node.dataset.i18nHtml); });
 
-    const select = $('#languageSelect');
-    if (select) select.value = state.lang;
+    $$('[data-lang-button]').forEach((button) => {
+      const active = button.dataset.langButton === state.lang;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
 
     const install = $('#installButton');
     if (install) {
@@ -753,12 +756,23 @@
     });
   }
 
+  function switchLanguageSmooth(lang) {
+    if (!SUPPORTED.includes(lang) || lang === state.lang) return;
+    document.body.classList.add('language-changing');
+    window.setTimeout(() => {
+      setLanguage(lang);
+      window.setTimeout(() => document.body.classList.remove('language-changing'), 240);
+    }, 90);
+  }
+
   function setupEvents() {
     $$('[data-tab-target]').forEach((el) => {
       if (el.tagName === 'A') return;
       el.addEventListener('click', () => switchTab(el.dataset.tabTarget));
     });
-    $('#languageSelect').addEventListener('change', (event) => setLanguage(event.target.value));
+    $$('[data-lang-button]').forEach((button) => {
+      button.addEventListener('click', () => switchLanguageSmooth(button.dataset.langButton));
+    });
     $('#copyStatusButton').addEventListener('click', copyStatus);
     $('#shareButton').addEventListener('click', share);
     $('#evidenceFilter').addEventListener('change', renderEvidence);
