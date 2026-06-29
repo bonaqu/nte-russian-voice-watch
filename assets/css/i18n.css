@@ -54,8 +54,10 @@
 }
 .status-orbit {
   z-index: 1;
-  margin-bottom: -22px;
+  margin-bottom: -30px;
   filter: drop-shadow(0 18px 46px rgba(31, 25, 91, .28));
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 64%, rgba(0,0,0,.62) 76%, rgba(0,0,0,.18) 87%, transparent 96%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 64%, rgba(0,0,0,.62) 76%, rgba(0,0,0,.18) 87%, transparent 96%);
 }
 .status-orbit::after {
   content: "";
@@ -172,7 +174,7 @@ html[lang="ko"] .nav-link {
   .top-actions .language-switch { max-width: 152px; }
   .icon-button { width: 34px; height: 34px; border-radius: 10px; }
   .hero::before { top: 72px; width: 82vw; }
-  .status-orbit { margin-top: 4px; margin-bottom: -32px; transform: scale(.9); }
+  .status-orbit { margin-top: 4px; margin-bottom: -34px; transform: scale(.9); }
 }
 @media (prefers-reduced-motion: reduce) {
   .shell, .footer, .topnav, .status-core, .toast, .language-switch button,
