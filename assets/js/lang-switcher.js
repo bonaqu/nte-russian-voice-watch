@@ -17,42 +17,34 @@
     ja: '日本語',
   };
 
-  function enhanceLanguageSelect() {
-    const select = document.getElementById('languageSelect');
-    if (!select || select.dataset.enhanced === 'true') return;
+  const supported = Object.keys(labels);
 
-    const holder = select.closest('.site-language') || select.parentElement;
-    if (!holder) return;
+  function ensureCompatibilitySelect() {
+    let select = document.getElementById('languageSelect');
+    if (select) return select;
 
-    select.dataset.enhanced = 'true';
-    holder.classList.add('is-enhanced');
+    select = document.createElement('select');
+    select.id = 'languageSelect';
+    select.setAttribute('aria-hidden', 'true');
+    select.tabIndex = -1;
+    select.className = 'language-compat-select';
 
-    const switcher = document.createElement('div');
-    switcher.className = 'language-switch main-language-switch';
-    switcher.setAttribute('role', 'group');
-    switcher.setAttribute('aria-label', 'Language');
-
-    [...select.options].forEach((option) => {
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.dataset.langButton = option.value;
-      button.textContent = labels[option.value] || option.textContent;
-      button.setAttribute('aria-label', names[option.value] || option.textContent);
-      button.addEventListener('click', () => chooseLanguage(option.value));
-      switcher.append(button);
+    supported.forEach((lang) => {
+      const option = document.createElement('option');
+      option.value = lang;
+      option.textContent = labels[lang];
+      select.append(option);
     });
 
-    holder.append(switcher);
-
-    select.addEventListener('change', syncActiveButton);
-    syncActiveButton();
+    document.body.append(select);
+    return select;
   }
 
   function syncActiveButton() {
     const select = document.getElementById('languageSelect');
     if (!select) return;
 
-    document.querySelectorAll('[data-lang-button]').forEach((button) => {
+    document.querySelectorAll('.top-actions .language-switch [data-lang-button]').forEach((button) => {
       const active = button.dataset.langButton === select.value;
       button.classList.toggle('is-active', active);
       button.setAttribute('aria-pressed', String(active));
@@ -60,7 +52,7 @@
   }
 
   function chooseLanguage(lang) {
-    const select = document.getElementById('languageSelect');
+    const select = ensureCompatibilitySelect();
     if (!select || select.value === lang) return;
 
     document.body.classList.add('language-changing');
@@ -72,9 +64,26 @@
 
       window.setTimeout(() => {
         document.body.classList.remove('language-changing');
-      }, 220);
+      }, 240);
     }, 90);
   }
 
-  document.addEventListener('DOMContentLoaded', enhanceLanguageSelect);
+  function setupButtons() {
+    const switcher = document.querySelector('.top-actions .language-switch');
+    if (!switcher) return;
+
+    switcher.querySelectorAll('[data-lang-button]').forEach((button) => {
+      const lang = button.dataset.langButton;
+      button.type = 'button';
+      button.setAttribute('aria-label', names[lang] || button.textContent.trim());
+      button.addEventListener('click', () => chooseLanguage(lang));
+    });
+
+    const select = ensureCompatibilitySelect();
+    select.addEventListener('change', syncActiveButton);
+    syncActiveButton();
+  }
+
+  ensureCompatibilitySelect();
+  document.addEventListener('DOMContentLoaded', setupButtons);
 })();
