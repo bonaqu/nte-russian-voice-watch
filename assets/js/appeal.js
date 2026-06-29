@@ -3,7 +3,7 @@
 
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-  const BRAND_ICON = 'assets/brand/nte-site-icon.svg';
+  const BRAND_ICON = 'assets/brand/nte-favicon-transparent.svg';
   const BRAND_SYMBOL = 'assets/brand/nte-symbol.svg';
 
   const SUPPORTED = ['ru', 'zh', 'en', 'ko', 'ja'];
