@@ -1,23 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="NTE symbol">
   <defs>
-    <linearGradient id="nteStroke" x1="88" y1="372" x2="424" y2="140" gradientUnits="userSpaceOnUse">
+    <linearGradient id="stroke" x1="96" y1="416" x2="416" y2="96" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#9b62ff"/>
-      <stop offset="0.48" stop-color="#b99cff"/>
-      <stop offset="1" stop-color="#56d9ff"/>
+      <stop offset="0.52" stop-color="#b79cff"/>
+      <stop offset="1" stop-color="#5ee2ff"/>
     </linearGradient>
-    <linearGradient id="nteInner" x1="176" y1="320" x2="356" y2="194" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#955cff"/>
-      <stop offset="0.55" stop-color="#b7a1ff"/>
-      <stop offset="1" stop-color="#73d8ff"/>
+    <linearGradient id="core" x1="184" y1="328" x2="328" y2="184" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8f5cff"/>
+      <stop offset="0.52" stop-color="#b7a4ff"/>
+      <stop offset="1" stop-color="#73e4ff"/>
     </linearGradient>
-    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="9" result="blur"/>
-      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.34  0 0 0 0 1  0 0 0 .82 0" result="glow"/>
-      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.34  0 0 0 0 1  0 0 0 .76 0" result="halo"/>
+      <feMerge><feMergeNode in="halo"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
-  <g filter="url(#softGlow)">
-    <path d="M256 55c24 0 45 10 62 27l112 112c35 35 35 89 0 124L318 430c-35 35-89 35-124 0L82 318c-35-35-35-89 0-124L194 82c17-17 38-27 62-27Z" fill="rgba(9,11,22,.18)" stroke="url(#nteStroke)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
-    <path fill="url(#nteInner)" fill-rule="evenodd" d="M258 165c41 0 77 23 95 58 5 10 15 16 27 16 18 0 33 15 33 33s-15 33-33 33c-12 0-22 6-27 16-18 35-54 58-95 58-59 0-107-48-107-107s48-107 107-107Zm0 38c-38 0-69 31-69 69s31 69 69 69 69-31 69-69-31-69-69-69Zm123 51a18 18 0 1 0 0 36 18 18 0 0 0 0-36Z"/>
+  <g filter="url(#glow)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M256 50c16 0 31 6 43 18l145 145c12 12 18 27 18 43s-6 31-18 43L299 444c-12 12-27 18-43 18s-31-6-43-18L68 299c-12-12-18-27-18-43s6-31 18-43L213 68c12-12 27-18 43-18Z" stroke="url(#stroke)" stroke-width="20" fill="rgba(9,11,22,.16)"/>
+    <circle cx="256" cy="256" r="64" stroke="url(#core)" stroke-width="18"/>
+    <circle cx="256" cy="256" r="10" fill="url(#core)" stroke="none"/>
   </g>
 </svg>
