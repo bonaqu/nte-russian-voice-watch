@@ -1,0 +1,132 @@
+{
+  "schema_version": 2,
+  "request_delay_seconds": 0.18,
+  "sources": [
+    {
+      "id": "nte-official-en",
+      "title": "NTE official news — English",
+      "url": "https://nte.perfectworld.com/en/",
+      "kind": "general",
+      "category": "official_hub",
+      "language": "en",
+      "authority": 1,
+      "discover_articles": true,
+      "max_discovered_links": 12,
+      "refresh_recent_links": 3,
+      "max_article_fetches_per_run": 5
+    },
+    {
+      "id": "nte-official-ru",
+      "title": "NTE official news — Russian",
+      "url": "https://nte.perfectworld.com/ru/",
+      "kind": "general",
+      "category": "official_hub",
+      "language": "ru",
+      "authority": 1,
+      "discover_articles": true,
+      "max_discovered_links": 12,
+      "refresh_recent_links": 3,
+      "max_article_fetches_per_run": 5
+    },
+    {
+      "id": "nte-official-cn",
+      "title": "NTE official news — Simplified Chinese",
+      "url": "https://nte.perfectworld.com/cn/",
+      "kind": "general",
+      "category": "official_hub",
+      "language": "zh-CN",
+      "authority": 1,
+      "discover_articles": true,
+      "max_discovered_links": 12,
+      "refresh_recent_links": 3,
+      "max_article_fetches_per_run": 5
+    },
+    {
+      "id": "nte-official-jp",
+      "title": "NTE official news — Japanese",
+      "url": "https://nte.perfectworld.com/jp/",
+      "kind": "general",
+      "category": "official_hub",
+      "language": "ja",
+      "authority": 1,
+      "discover_articles": true,
+      "max_discovered_links": 12,
+      "refresh_recent_links": 3,
+      "max_article_fetches_per_run": 5
+    },
+    {
+      "id": "nte-official-kr",
+      "title": "NTE official news — Korean",
+      "url": "https://nte.perfectworld.com/kr/",
+      "kind": "general",
+      "category": "official_hub",
+      "language": "ko",
+      "authority": 1,
+      "discover_articles": true,
+      "max_discovered_links": 12,
+      "refresh_recent_links": 3,
+      "max_article_fetches_per_run": 5
+    },
+    {
+      "id": "steam-global",
+      "title": "Steam language metadata",
+      "url": "https://store.steampowered.com/app/4508340/NTE_Neverness_to_Everness/?l=english&cc=us",
+      "kind": "steam",
+      "category": "store_steam",
+      "language": "en",
+      "authority": 1,
+      "baseline_excerpt": "Steam lists Russian interface and subtitles, but not Russian Full Audio."
+    },
+    {
+      "id": "playstation-us",
+      "title": "PlayStation Store — United States",
+      "url": "https://www.playstation.com/en-us/games/nte-neverness-to-everness/",
+      "kind": "playstation",
+      "category": "store_playstation",
+      "language": "en",
+      "authority": 1,
+      "baseline_excerpt": "PlayStation lists Chinese, English, Japanese and Korean voices; Russian is a screen language."
+    },
+    {
+      "id": "playstation-jp",
+      "title": "PlayStation Store — Japan",
+      "url": "https://www.playstation.com/ja-jp/games/nte-neverness-to-everness/",
+      "kind": "playstation",
+      "category": "store_playstation",
+      "language": "ja",
+      "authority": 1,
+      "baseline_excerpt": "Japanese PlayStation metadata separates voice languages from display languages."
+    },
+    {
+      "id": "playstation-kr",
+      "title": "PlayStation Store — Korea",
+      "url": "https://www.playstation.com/ko-kr/games/nte-neverness-to-everness/",
+      "kind": "playstation",
+      "category": "store_playstation",
+      "language": "ko",
+      "authority": 1,
+      "baseline_excerpt": "Korean PlayStation metadata separates voice languages from screen languages."
+    },
+    {
+      "id": "official-language-baseline-en",
+      "title": "Official Co-Ex Test language announcement",
+      "url": "https://nte.perfectworld.com/en/article/news/gamebroad/20260203/260715.html",
+      "kind": "general",
+      "category": "official_baseline",
+      "language": "en",
+      "authority": 1,
+      "baseline_excerpt": "Game Languages include Russian; Voice-Over Languages are English, Japanese, Korean and Chinese."
+    },
+    {
+      "id": "official-release-faq-ru",
+      "title": "Official NTE release FAQ",
+      "url": "https://nte.perfectworld.com/ru/article/news/gamebroad/20260426/261935.html",
+      "kind": "general",
+      "category": "official_baseline",
+      "language": "ru",
+      "authority": 1,
+      "baseline_excerpt": "NTE launched on 29 April 2026 at 11:00 UTC+8."
+    }
+  ],
+  "max_workers": 6
+}

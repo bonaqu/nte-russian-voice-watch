@@ -1,0 +1,45 @@
+{
+  "schema_version": 2,
+  "project": {
+    "name": "NTE Russian Voice Watch",
+    "game": "NTE: Neverness to Everness",
+    "repository": "https://github.com/bonaqu/nte-russian-voice-watch",
+    "site": "https://bonaqu.github.io/nte-russian-voice-watch/",
+    "unofficial": true
+  },
+  "release": {
+    "utc": "2026-04-29T03:00:00Z",
+    "official_local": "2026-04-29 11:00 (UTC+8)",
+    "source": "https://nte.perfectworld.com/ru/article/news/gamebroad/20260426/261935.html"
+  },
+  "state": "NO_RUSSIAN_VOICE",
+  "state_label_ru": "Русской озвучки нет",
+  "confidence": "high",
+  "last_checked_at": "2026-06-29T08:33:21Z",
+  "last_change_at": "2026-06-21T18:06:40Z",
+  "check_interval_hours": 6,
+  "source_health": {
+    "total": 11,
+    "successful": 11,
+    "failed": 0
+  },
+  "russian_text": {
+    "supported": true,
+    "label": "Русский интерфейс и субтитры доступны"
+  },
+  "russian_voice": {
+    "supported": false,
+    "announced": false,
+    "label": "Русской озвучки нет"
+  },
+  "known_voice_languages": [
+    "Chinese",
+    "English",
+    "Japanese",
+    "Korean"
+  ],
+  "confirmed_event": null,
+  "state_changed": false,
+  "methodology_version": "1.0.0",
+  "evidence_signature": "b6606f06d010395e48111275c1bde51590dd8b0e1f08502bf221856a5fdb489b"
+}

@@ -1,0 +1,9 @@
+{
+  "checked_at": "2026-06-29T08:33:21Z",
+  "state": "NO_RUSSIAN_VOICE",
+  "previous_state": "NO_RUSSIAN_VOICE",
+  "state_changed": false,
+  "should_alert": false,
+  "alert_title": "NTE voice monitor: Русской озвучки нет",
+  "alert_body": "Detected state: **NO_RUSSIAN_VOICE**\n\nThis is an automated signal. Verify the original source before publishing a final claim."
+}

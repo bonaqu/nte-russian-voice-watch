@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="refresh" content="2;url=./">
+  <title>NTE Russian Voice Watch — Redirecting</title>
+</head>
+<body style="background:#070912;color:#fff;font-family:system-ui;padding:40px">
+  <h1 id="title">Redirecting to the main page…</h1>
+  <p><a id="link" href="./" style="color:#b19dff">Open manually</a></p>
+  <script>
+    const lang = (navigator.languages || [navigator.language || 'en']).join(' ').toLowerCase();
+    const isRu = /(^|\s)(ru|uk|be|kk|uz|ky|hy|az|tg|tk|mo|ro)/.test(lang);
+    const isZh = lang.includes('zh');
+    const isKo = lang.includes('ko');
+    const isJa = lang.includes('ja');
+    const dict = isZh ? ['正在跳转到主页…','手动打开'] : isKo ? ['메인 페이지로 이동 중…','직접 열기'] : isJa ? ['メインページへ移動しています…','手動で開く'] : isRu ? ['Переходим на главную…','Открыть вручную'] : ['Redirecting to the main page…','Open manually'];
+    document.documentElement.lang = isZh ? 'zh-CN' : isKo ? 'ko' : isJa ? 'ja' : isRu ? 'ru' : 'en';
+    document.getElementById('title').textContent = dict[0];
+    document.getElementById('link').textContent = dict[1];
+  </script>
+</body>
+</html>

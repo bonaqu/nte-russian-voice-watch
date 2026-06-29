@@ -1,0 +1,193 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-06-29T08:33:21Z",
+  "entries": [
+    {
+      "checked_at": "2026-06-21T18:06:40Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 5,
+      "failed": 0,
+      "changed": false,
+      "elapsed_seconds": 4633600,
+      "evidence_signature": "bundled-baseline"
+    },
+    {
+      "checked_at": "2026-06-25T15:46:13Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": true,
+      "elapsed_seconds": 4970773,
+      "evidence_signature": "1ab5f3709e44b641"
+    },
+    {
+      "checked_at": "2026-06-25T21:02:45Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": true,
+      "elapsed_seconds": 4989765,
+      "evidence_signature": "3b45777813e8f231"
+    },
+    {
+      "checked_at": "2026-06-26T05:38:05Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": true,
+      "elapsed_seconds": 5020685,
+      "evidence_signature": "1ab5f3709e44b641"
+    },
+    {
+      "checked_at": "2026-06-26T10:29:19Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": false,
+      "elapsed_seconds": 5038159,
+      "evidence_signature": "1ab5f3709e44b641"
+    },
+    {
+      "checked_at": "2026-06-26T15:34:25Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": true,
+      "elapsed_seconds": 5056465,
+      "evidence_signature": "9d200fdeb7d57b05"
+    },
+    {
+      "checked_at": "2026-06-26T20:56:03Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": true,
+      "elapsed_seconds": 5075763,
+      "evidence_signature": "1ab5f3709e44b641"
+    },
+    {
+      "checked_at": "2026-06-27T05:04:09Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": true,
+      "elapsed_seconds": 5105049,
+      "evidence_signature": "1af9dc216e60720d"
+    },
+    {
+      "checked_at": "2026-06-27T09:35:18Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": false,
+      "elapsed_seconds": 5121318,
+      "evidence_signature": "1af9dc216e60720d"
+    },
+    {
+      "checked_at": "2026-06-27T14:55:58Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": true,
+      "elapsed_seconds": 5140558,
+      "evidence_signature": "c247007057f7fa15"
+    },
+    {
+      "checked_at": "2026-06-27T20:20:34Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": true,
+      "elapsed_seconds": 5160034,
+      "evidence_signature": "3be68b3ed5717609"
+    },
+    {
+      "checked_at": "2026-06-28T05:44:57Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": true,
+      "elapsed_seconds": 5193897,
+      "evidence_signature": "d6f3369e7c9c5345"
+    },
+    {
+      "checked_at": "2026-06-28T10:08:52Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": true,
+      "elapsed_seconds": 5209732,
+      "evidence_signature": "62420751e2eb6dd8"
+    },
+    {
+      "checked_at": "2026-06-28T14:57:40Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": true,
+      "elapsed_seconds": 5227060,
+      "evidence_signature": "d6f3369e7c9c5345"
+    },
+    {
+      "checked_at": "2026-06-28T20:37:05Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": false,
+      "elapsed_seconds": 5247425,
+      "evidence_signature": "d6f3369e7c9c5345"
+    },
+    {
+      "checked_at": "2026-06-29T06:05:31Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": true,
+      "elapsed_seconds": 5281531,
+      "evidence_signature": "b6606f06d010395e"
+    },
+    {
+      "checked_at": "2026-06-29T08:33:21Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 11,
+      "failed": 0,
+      "changed": false,
+      "elapsed_seconds": 5290401,
+      "evidence_signature": "b6606f06d010395e"
+    }
+  ]
+}
