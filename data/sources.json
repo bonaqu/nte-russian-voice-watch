@@ -10,6 +10,7 @@
       "category": "official_hub",
       "language": "en",
       "authority": 1,
+      "source_type": "official",
       "discover_articles": true,
       "max_discovered_links": 30,
       "refresh_recent_links": 8,
@@ -23,6 +24,7 @@
       "category": "official_hub",
       "language": "ru",
       "authority": 1,
+      "source_type": "official",
       "discover_articles": true,
       "max_discovered_links": 30,
       "refresh_recent_links": 8,
@@ -36,6 +38,7 @@
       "category": "official_hub",
       "language": "zh-CN",
       "authority": 1,
+      "source_type": "official",
       "discover_articles": true,
       "max_discovered_links": 30,
       "refresh_recent_links": 8,
@@ -49,6 +52,7 @@
       "category": "official_hub",
       "language": "ja",
       "authority": 1,
+      "source_type": "official",
       "discover_articles": true,
       "max_discovered_links": 30,
       "refresh_recent_links": 8,
@@ -62,6 +66,7 @@
       "category": "official_hub",
       "language": "ko",
       "authority": 1,
+      "source_type": "official",
       "discover_articles": true,
       "max_discovered_links": 30,
       "refresh_recent_links": 8,
@@ -75,6 +80,7 @@
       "category": "store_steam",
       "language": "en",
       "authority": 1,
+      "source_type": "store",
       "baseline_excerpt": "Steam lists Russian interface and subtitles, but not Russian Full Audio."
     },
     {
@@ -85,6 +91,7 @@
       "category": "store_steam",
       "language": "ru",
       "authority": 1,
+      "source_type": "store",
       "baseline_excerpt": "Steam localized page is checked through the structured Full Audio column."
     },
     {
@@ -95,6 +102,7 @@
       "category": "store_steam",
       "language": "zh-CN",
       "authority": 1,
+      "source_type": "store",
       "baseline_excerpt": "Steam localized page is checked through the structured Full Audio column."
     },
     {
@@ -105,6 +113,7 @@
       "category": "store_steam",
       "language": "ja",
       "authority": 1,
+      "source_type": "store",
       "baseline_excerpt": "Steam localized page is checked through the structured Full Audio column."
     },
     {
@@ -115,6 +124,7 @@
       "category": "store_steam",
       "language": "ko",
       "authority": 1,
+      "source_type": "store",
       "baseline_excerpt": "Steam localized page is checked through the structured Full Audio column."
     },
     {
@@ -125,6 +135,7 @@
       "category": "store_playstation",
       "language": "en",
       "authority": 1,
+      "source_type": "store",
       "baseline_excerpt": "PlayStation lists Chinese, English, Japanese and Korean voices; Russian is a screen language."
     },
     {
@@ -135,6 +146,7 @@
       "category": "store_playstation",
       "language": "en-GB",
       "authority": 1,
+      "source_type": "store",
       "baseline_excerpt": "PlayStation regional metadata is checked through Voice vs Screen Languages."
     },
     {
@@ -145,6 +157,7 @@
       "category": "store_playstation",
       "language": "de",
       "authority": 1,
+      "source_type": "store",
       "baseline_excerpt": "PlayStation regional metadata is checked through Voice vs Screen Languages."
     },
     {
@@ -155,6 +168,7 @@
       "category": "store_playstation",
       "language": "fr",
       "authority": 1,
+      "source_type": "store",
       "baseline_excerpt": "PlayStation regional metadata is checked through Voice vs Screen Languages."
     },
     {
@@ -165,6 +179,7 @@
       "category": "store_playstation",
       "language": "ja",
       "authority": 1,
+      "source_type": "store",
       "baseline_excerpt": "Japanese PlayStation metadata separates voice languages from display languages."
     },
     {
@@ -175,6 +190,7 @@
       "category": "store_playstation",
       "language": "ko",
       "authority": 1,
+      "source_type": "store",
       "baseline_excerpt": "Korean PlayStation metadata separates voice languages from screen languages."
     },
     {
@@ -185,6 +201,7 @@
       "category": "official_baseline",
       "language": "en",
       "authority": 1,
+      "source_type": "official",
       "baseline_excerpt": "Game Languages include Russian; Voice-Over Languages are English, Japanese, Korean and Chinese."
     },
     {
@@ -195,6 +212,7 @@
       "category": "official_baseline",
       "language": "ru",
       "authority": 1,
+      "source_type": "official",
       "baseline_excerpt": "Language baseline page is checked for explicit Russian voice-over wording, not generic Russian text support."
     },
     {
@@ -205,6 +223,7 @@
       "category": "official_baseline",
       "language": "zh-CN",
       "authority": 1,
+      "source_type": "official",
       "baseline_excerpt": "Language baseline page is checked for explicit Russian voice-over wording, not generic Russian text support."
     },
     {
@@ -215,6 +234,7 @@
       "category": "official_baseline",
       "language": "ja",
       "authority": 1,
+      "source_type": "official",
       "baseline_excerpt": "Language baseline page is checked for explicit Russian voice-over wording, not generic Russian text support."
     },
     {
@@ -225,6 +245,7 @@
       "category": "official_baseline",
       "language": "ko",
       "authority": 1,
+      "source_type": "official",
       "baseline_excerpt": "Language baseline page is checked for explicit Russian voice-over wording, not generic Russian text support."
     },
     {
@@ -235,6 +256,7 @@
       "category": "official_baseline",
       "language": "ru",
       "authority": 1,
+      "source_type": "official",
       "baseline_excerpt": "NTE launched on 29 April 2026 at 11:00 UTC+8."
     },
     {
@@ -245,6 +267,7 @@
       "category": "official_baseline",
       "language": "en",
       "authority": 1,
+      "source_type": "official",
       "baseline_excerpt": "Release FAQ is checked for voice-over changes and launch-date context."
     },
     {
@@ -255,6 +278,7 @@
       "category": "official_baseline",
       "language": "zh-CN",
       "authority": 1,
+      "source_type": "official",
       "baseline_excerpt": "Release FAQ is checked for voice-over changes and launch-date context."
     },
     {
@@ -265,6 +289,7 @@
       "category": "official_baseline",
       "language": "ja",
       "authority": 1,
+      "source_type": "official",
       "baseline_excerpt": "Release FAQ is checked for voice-over changes and launch-date context."
     },
     {
@@ -275,7 +300,173 @@
       "category": "official_baseline",
       "language": "ko",
       "authority": 1,
+      "source_type": "official",
       "baseline_excerpt": "Release FAQ is checked for voice-over changes and launch-date context."
+    },
+    {
+      "id": "pcgamer-search",
+      "title": "PC Gamer search — NTE",
+      "url": "https://www.pcgamer.com/search/?searchTerm=Neverness%20to%20Everness%20Russian%20voice",
+      "kind": "general",
+      "category": "unofficial_news_en",
+      "language": "en",
+      "authority": 3,
+      "source_type": "non_official",
+      "baseline_excerpt": "Non-official news search; any positive signal requires official/store confirmation."
+    },
+    {
+      "id": "gamesradar-search",
+      "title": "GamesRadar search — NTE",
+      "url": "https://www.gamesradar.com/search/?searchTerm=Neverness%20to%20Everness%20Russian%20voice",
+      "kind": "general",
+      "category": "unofficial_news_en",
+      "language": "en",
+      "authority": 3,
+      "source_type": "non_official",
+      "baseline_excerpt": "Non-official news search; any positive signal requires official/store confirmation."
+    },
+    {
+      "id": "techradar-search",
+      "title": "TechRadar search — NTE",
+      "url": "https://www.techradar.com/search?searchTerm=Neverness%20to%20Everness%20Russian%20voice",
+      "kind": "general",
+      "category": "unofficial_news_en",
+      "language": "en",
+      "authority": 3,
+      "source_type": "non_official",
+      "baseline_excerpt": "Non-official news search; any positive signal requires official/store confirmation."
+    },
+    {
+      "id": "gematsu-search",
+      "title": "Gematsu search — NTE",
+      "url": "https://www.gematsu.com/?s=Neverness+to+Everness+Russian+voice",
+      "kind": "general",
+      "category": "unofficial_news_en",
+      "language": "en",
+      "authority": 3,
+      "source_type": "non_official",
+      "baseline_excerpt": "Non-official news search; any positive signal requires official/store confirmation."
+    },
+    {
+      "id": "rpgsite-search",
+      "title": "RPG Site search — NTE",
+      "url": "https://www.rpgsite.net/search?query=Neverness%20to%20Everness%20Russian%20voice",
+      "kind": "general",
+      "category": "unofficial_news_en",
+      "language": "en",
+      "authority": 3,
+      "source_type": "non_official",
+      "baseline_excerpt": "Non-official news search; any positive signal requires official/store confirmation."
+    },
+    {
+      "id": "game8-nte",
+      "title": "Game8 NTE guide hub",
+      "url": "https://game8.co/games/Neverness-to-Everness",
+      "kind": "general",
+      "category": "unofficial_guide_en",
+      "language": "en",
+      "authority": 3,
+      "source_type": "non_official",
+      "baseline_excerpt": "Non-official guide hub; any positive signal requires official/store confirmation."
+    },
+    {
+      "id": "dtf-search-ru",
+      "title": "DTF search — Russian community",
+      "url": "https://dtf.ru/search?q=Neverness%20to%20Everness%20%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BE%D0%B7%D0%B2%D1%83%D1%87%D0%BA%D0%B0",
+      "kind": "general",
+      "category": "unofficial_community_ru",
+      "language": "ru",
+      "authority": 3,
+      "source_type": "non_official",
+      "baseline_excerpt": "Russian community search; any positive signal requires official/store confirmation."
+    },
+    {
+      "id": "goha-search-ru",
+      "title": "GoHa search — Russian community",
+      "url": "https://www.goha.ru/search?q=Neverness%20to%20Everness%20%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BE%D0%B7%D0%B2%D1%83%D1%87%D0%BA%D0%B0",
+      "kind": "general",
+      "category": "unofficial_community_ru",
+      "language": "ru",
+      "authority": 3,
+      "source_type": "non_official",
+      "baseline_excerpt": "Russian community search; any positive signal requires official/store confirmation."
+    },
+    {
+      "id": "kanobu-search-ru",
+      "title": "Kanobu search — Russian media",
+      "url": "https://kanobu.ru/search/?q=Neverness%20to%20Everness%20%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B0%D1%8F%20%D0%BE%D0%B7%D0%B2%D1%83%D1%87%D0%BA%D0%B0",
+      "kind": "general",
+      "category": "unofficial_news_ru",
+      "language": "ru",
+      "authority": 3,
+      "source_type": "non_official",
+      "baseline_excerpt": "Russian media search; any positive signal requires official/store confirmation."
+    },
+    {
+      "id": "taptap-search-cn",
+      "title": "TapTap search — Chinese community",
+      "url": "https://www.taptap.cn/search/%E5%BC%82%E7%8E%AF%20%E4%BF%84%E8%AF%AD%20%E9%85%8D%E9%9F%B3",
+      "kind": "general",
+      "category": "unofficial_community_cn",
+      "language": "zh-CN",
+      "authority": 3,
+      "source_type": "non_official",
+      "baseline_excerpt": "Chinese community search; any positive signal requires official/store confirmation."
+    },
+    {
+      "id": "bilibili-search-cn",
+      "title": "Bilibili search — Chinese community",
+      "url": "https://search.bilibili.com/all?keyword=%E5%BC%82%E7%8E%AF%20%E4%BF%84%E8%AF%AD%20%E9%85%8D%E9%9F%B3",
+      "kind": "general",
+      "category": "unofficial_community_cn",
+      "language": "zh-CN",
+      "authority": 3,
+      "source_type": "non_official",
+      "baseline_excerpt": "Chinese community search; any positive signal requires official/store confirmation."
+    },
+    {
+      "id": "famitsu-search-jp",
+      "title": "Famitsu search — Japanese media",
+      "url": "https://www.famitsu.com/search/?q=Neverness%20to%20Everness%20%E3%83%AD%E3%82%B7%E3%82%A2%E8%AA%9E%20%E9%9F%B3%E5%A3%B0",
+      "kind": "general",
+      "category": "unofficial_news_jp",
+      "language": "ja",
+      "authority": 3,
+      "source_type": "non_official",
+      "baseline_excerpt": "Japanese media search; any positive signal requires official/store confirmation."
+    },
+    {
+      "id": "fourgamer-search-jp",
+      "title": "4Gamer search — Japanese media",
+      "url": "https://www.4gamer.net/search/?q=Neverness%20to%20Everness%20%E3%83%AD%E3%82%B7%E3%82%A2%E8%AA%9E%20%E9%9F%B3%E5%A3%B0",
+      "kind": "general",
+      "category": "unofficial_news_jp",
+      "language": "ja",
+      "authority": 3,
+      "source_type": "non_official",
+      "baseline_excerpt": "Japanese media search; any positive signal requires official/store confirmation."
+    },
+    {
+      "id": "inven-search-kr",
+      "title": "Inven search — Korean media/community",
+      "url": "https://www.inven.co.kr/search/webzine/top/%EC%9D%B4%ED%99%98%20%EB%9F%AC%EC%8B%9C%EC%95%84%EC%96%B4%20%EC%9D%8C%EC%84%B1",
+      "kind": "general",
+      "category": "unofficial_news_kr",
+      "language": "ko",
+      "authority": 3,
+      "source_type": "non_official",
+      "baseline_excerpt": "Korean media/community search; any positive signal requires official/store confirmation."
+    },
+    {
+      "id": "reddit-search-global",
+      "title": "Reddit search — global community",
+      "url": "https://www.reddit.com/search/?q=%22Neverness%20to%20Everness%22%20%22Russian%20voice%22&type=posts",
+      "kind": "general",
+      "category": "unofficial_community_global",
+      "language": "en",
+      "authority": 3,
+      "source_type": "non_official",
+      "baseline_excerpt": "Global community search; any positive signal requires official/store confirmation."
     }
   ],
   "max_workers": 8
