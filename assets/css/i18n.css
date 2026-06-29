@@ -53,7 +53,7 @@
   text-shadow: 0 0 48px rgba(143,120,255,.08);
 }
 .status-orbit {
-  z-index: 2;
+  z-index: 1;
   margin-bottom: -22px;
   filter: drop-shadow(0 18px 46px rgba(31, 25, 91, .28));
 }
@@ -71,9 +71,10 @@
 }
 .counter-card {
   position: relative;
-  z-index: 4;
+  z-index: 12;
   isolation: isolate;
   overflow: hidden;
+  background: linear-gradient(135deg, rgba(24,28,53,.99), rgba(11,17,31,.985) 58%, rgba(10,17,30,.99)) !important;
 }
 .counter-card::before {
   content: "";
@@ -82,8 +83,11 @@
   z-index: 0;
   border-radius: inherit;
   background:
-    radial-gradient(circle at 50% -24%, rgba(143,120,255,.16), transparent 42%),
-    linear-gradient(135deg, rgba(24,28,53,.985), rgba(11,17,31,.975) 58%, rgba(10,17,30,.985));
+    linear-gradient(180deg, rgba(18,23,44,1) 0%, rgba(15,21,39,.992) 24%, rgba(11,17,31,.985) 100%),
+    radial-gradient(circle at 50% -18%, rgba(143,120,255,.12), transparent 44%);
+  box-shadow:
+    0 -18px 34px rgba(5, 8, 18, .58) inset,
+    0 1px 0 rgba(255,255,255,.04) inset;
   pointer-events: none;
 }
 .counter-card::after {
