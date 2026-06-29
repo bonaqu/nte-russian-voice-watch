@@ -34,7 +34,7 @@
       helpQ: 'Как помочь проекту?',
       helpSite: 'Делитесь ссылкой на сайт.',
       helpAppeal: 'Отправляйте обращение разработчикам вежливо и без спама.',
-      helpSupport: 'Если хотите поддержать проект, это можно сделать по',
+      helpSupport: 'Если хотите оказать добровольную поддержку проекту, это можно сделать по',
       helpLink: 'ссылке',
       line: 'Ключевые отметки',
       lineLead: 'Релиз, важные рубежи и текущий день.',
@@ -65,7 +65,7 @@
       helpQ: 'How can I help?',
       helpSite: 'Share the site link.',
       helpAppeal: 'Send the appeal politely and without spam.',
-      helpSupport: 'If you want to support the project, you can do it via this',
+      helpSupport: 'If you want to support the project voluntarily, you can do it via this',
       helpLink: 'link',
       line: 'Key milestones',
       lineLead: 'Release, milestones, and today.',
@@ -116,8 +116,7 @@
 
   function supportCard(meta) {
     const support = meta?.support_url ? `${esc(t('helpSupport'))} <a href="${esc(meta.support_url)}" target="_blank" rel="noopener noreferrer">${esc(t('helpLink'))}</a>.` : '';
-    const qr = meta?.qr_url ? `<a class="ux-faq-qr" href="${esc(meta.support_url)}" target="_blank" rel="noopener noreferrer"><img src="${esc(meta.qr_url)}" alt="QR" loading="lazy"></a>` : '';
-    return `<article class="ux-faq-card ux-faq-support"><div class="ux-faq-support-copy"><h3>${esc(t('helpQ'))}</h3><ul><li>${esc(t('helpSite'))}</li><li>${esc(t('helpAppeal'))}</li>${support ? `<li>${support}</li>` : ''}</ul></div>${qr}</article>`;
+    return `<article class="ux-faq-card ux-faq-support"><h3>${esc(t('helpQ'))}</h3><ul><li>${esc(t('helpSite'))}</li><li>${esc(t('helpAppeal'))}</li>${support ? `<li>${support}</li>` : ''}</ul></article>`;
   }
 
   function renderFaq(meta) {
