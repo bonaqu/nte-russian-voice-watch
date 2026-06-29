@@ -35,7 +35,7 @@ A positive signal must explicitly connect Russian with voice-over / dubbing / fu
 | Status | Meaning |
 |---|---|
 | `NO_RUSSIAN_VOICE` | official sources do not confirm Russian full audio |
-| `POSSIBLE_MENTION` | relevant but ambiguous signal found |
+| `POSSIBLE_MENTION` | relevant but ambiguous official/store signal found |
 | `CONFIRMED_ANNOUNCEMENT` | an official source announced Russian voice-over |
 | `RUSSIAN_VOICE_RELEASED` | Russian full audio is confirmed as available |
 | `UNKNOWN` | not enough reliable data; the monitor does not guess |
@@ -43,6 +43,8 @@ A positive signal must explicitly connect Russian with voice-over / dubbing / fu
 ## Sources and data
 
 Configured sources are stored in `data/sources.json`. The tracker prioritizes official NTE pages, store language fields, release FAQ pages, and related official announcements.
+
+Community and media search pages may be monitored as a watchlist only. They can surface an unverified lead, but they cannot change the public status unless an official source or store metadata confirms it.
 
 Public JSON files:
 
@@ -58,7 +60,7 @@ The project stores short excerpts and technical fingerprints, not full copies of
 ```bash
 python -m pip install -r requirements.txt
 python -m pytest -q
-python scripts/check_sources.py
+python scripts/check_sources_safe.py
 python scripts/build_site.py
 ```
 
