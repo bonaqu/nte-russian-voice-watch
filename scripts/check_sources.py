@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
-"""Check official NTE and store sources and update static JSON data.
+"""Check official, store, and monitored community sources for Russian voice-over evidence.
 
-Designed for GitHub Actions. No paid API, database, or secret is required.
-The script is conservative by design: it separates text support from full audio,
-uses structured store fields where possible, and never declares a release from a
-single ambiguous keyword hit.
+The monitor is conservative by design:
+- Russian text localization is not treated as Russian full audio.
+- Structured store fields are preferred where available.
+- Non-official sources can only create an unverified possible signal.
+- Only official/store evidence can confirm announcement or release.
 """
 from __future__ import annotations
 
 import hashlib
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import json
-import os
 from pathlib import Path
 import re
 import sys
@@ -47,8 +47,9 @@ STATE_PATH = DATA / "crawler_state.json"
 RUN_RESULT_PATH = DATA / "run-result.json"
 
 RELEASE_UTC = datetime.fromisoformat("2026-04-29T03:00:00+00:00")
-MAX_HISTORY = 20_000  # ~13 years at four checks/day.
+MAX_HISTORY = 20_000
 MAX_EXCERPT = 640
+TRUSTED_AUTHORITY_MAX = 1
 
 STATE_LABELS = {
     STATE_NO_VOICE: "Русской озвучки нет",
@@ -97,8 +98,8 @@ def build_session() -> requests.Session:
     session.mount("http://", HTTPAdapter(max_retries=retry))
     session.headers.update(
         {
-            "User-Agent": "NTE-Russian-Voice-Watch/1.0 (+https://bonaqu.github.io/nte-russian-voice-watch/; public factual monitor)",
-            "Accept-Language": "en,ru;q=0.9,ja;q=0.7,ko;q=0.7,zh-CN;q=0.7",
+            "User-Agent": "NTE-Russian-Voice-Watch/1.1 (+https://bonaqu.github.io/nte-russian-voice-watch/; public factual monitor)",
+            "Accept-Language": "en,ru;q=0.9,zh-CN;q=0.8,ja;q=0.7,ko;q=0.7,de;q=0.5,fr;q=0.5",
             "Cache-Control": "no-cache",
         }
     )
@@ -109,7 +110,7 @@ def fetch(session: requests.Session, url: str, timeout: int = 15) -> tuple[int, 
     response = session.get(url, timeout=timeout, allow_redirects=True)
     response.raise_for_status()
     content_type = response.headers.get("content-type", "")
-    if "text" not in content_type and "json" not in content_type and "html" not in content_type:
+    if "text" not in content_type and "json" not in content_type and "html" not in content_type and content_type:
         raise ValueError(f"unsupported content type: {content_type}")
     if len(response.content) > 5_000_000:
         raise ValueError("document exceeds 5 MB safety limit")
@@ -126,8 +127,31 @@ def html_to_text(html: str) -> tuple[str, BeautifulSoup]:
 
 
 def clip(text: str, limit: int = MAX_EXCERPT) -> str:
-    value = re.sub(r"\s+", " ", text).strip()
+    value = re.sub(r"\s+", " ", text or "").strip()
     return value if len(value) <= limit else value[: limit - 1].rstrip() + "…"
+
+
+def is_trusted(source: dict) -> bool:
+    return int(source.get("authority", 3)) <= TRUSTED_AUTHORITY_MAX
+
+
+def apply_trust_policy(source: dict, detection) -> tuple[str, str, str]:
+    classification = detection.classification
+    confidence = detection.confidence
+    reason = detection.reason
+
+    if not is_trusted(source) and classification in {"released", "announced"}:
+        classification = "possible"
+        confidence = "low"
+        reason = (
+            f"unverified non-official source reported {detection.classification}; "
+            "official/store confirmation is required before treating it as fact"
+        )
+    elif not is_trusted(source) and classification == "possible":
+        confidence = "low"
+        reason = f"unverified non-official mention; {reason or 'requires official confirmation'}"
+
+    return classification, confidence, reason
 
 
 def parse_steam(soup: BeautifulSoup, text: str):
@@ -148,7 +172,6 @@ def parse_steam(soup: BeautifulSoup, text: str):
                 marks.append(has_check)
             rows.append({"language": lang, "interface": marks[0], "full_audio": marks[1], "subtitles": marks[2]})
     if not rows:
-        # Fallback for changed Steam markup. Use a narrow row-like pattern only.
         for line in text.splitlines():
             if re.search(r"\bRussian\b|Русский", line, re.I):
                 tokens = re.findall(r"[✓✔]", line)
@@ -199,7 +222,9 @@ def source_result(source: dict, checked_at: str, **updates: Any) -> dict:
         "url": source["url"],
         "category": source.get("category", "official"),
         "language": source.get("language", "unknown"),
-        "authority": int(source.get("authority", 2)),
+        "authority": int(source.get("authority", 3)),
+        "source_type": source.get("source_type", "official" if int(source.get("authority", 3)) <= TRUSTED_AUTHORITY_MAX else "non_official"),
+        "requires_official_confirmation": not is_trusted(source),
         "checked_at": checked_at,
         "ok": False,
         "http_status": None,
@@ -215,7 +240,7 @@ def source_result(source: dict, checked_at: str, **updates: Any) -> dict:
 
 def check_single(session: requests.Session, source: dict, checked_at: str) -> tuple[dict, BeautifulSoup | None]:
     try:
-        status, final_url, html = fetch(session, source["url"])
+        status, final_url, html = fetch(session, source["url"], int(source.get("timeout", 15)))
         text, soup = html_to_text(html)
         kind = source.get("kind", "general")
         if kind == "steam":
@@ -224,6 +249,8 @@ def check_single(session: requests.Session, source: dict, checked_at: str) -> tu
             detection = parse_playstation(text)
         else:
             detection = detect_general(text)
+
+        classification, confidence, reason = apply_trust_policy(source, detection)
         quote = detection.matched_text or source.get("baseline_excerpt", "")
         return source_result(
             source,
@@ -231,13 +258,13 @@ def check_single(session: requests.Session, source: dict, checked_at: str) -> tu
             url=final_url,
             ok=True,
             http_status=status,
-            classification=detection.classification,
-            confidence=detection.confidence,
+            classification=classification,
+            confidence=confidence,
             quote=clip(quote),
-            reason=detection.reason,
+            reason=reason,
             content_hash=sha256(text),
         ), soup
-    except Exception as exc:  # network/parser failures are evidence health, not voice status.
+    except Exception as exc:
         return source_result(source, checked_at, reason=f"{type(exc).__name__}: {exc}"), None
 
 
@@ -248,7 +275,8 @@ def check_article(session: requests.Session, parent: dict, article: dict, checke
         "url": article["url"],
         "category": "official_news",
         "language": parent.get("language", "unknown"),
-        "authority": 1,
+        "authority": parent.get("authority", 1),
+        "source_type": parent.get("source_type", "official"),
         "kind": "general",
     }
     result, _ = check_single(session, derived, checked_at)
@@ -275,8 +303,15 @@ def build_status(previous: dict, results: list[dict], checked: datetime) -> dict
     state_changed = state != previous_state
     last_change_at = iso(checked) if state_changed else previous.get("last_change_at", previous.get("last_checked_at"))
     confirmed_event = previous.get("confirmed_event")
+
     if state in {STATE_ANNOUNCED, STATE_RELEASED} and state_changed:
-        strongest = next((r for r in results if r.get("classification") in {"released", "announced"}), None)
+        strongest = next(
+            (
+                r for r in results
+                if r.get("classification") in {"released", "announced"} and int(r.get("authority", 3)) <= TRUSTED_AUTHORITY_MAX
+            ),
+            None,
+        )
         confirmed_event = {
             "detected_at": iso(checked),
             "source": strongest.get("url") if strongest else None,
@@ -285,6 +320,9 @@ def build_status(previous: dict, results: list[dict], checked: datetime) -> dict
         }
     if state not in {STATE_ANNOUNCED, STATE_RELEASED}:
         confirmed_event = None
+
+    official_count = sum(1 for r in results if int(r.get("authority", 3)) <= TRUSTED_AUTHORITY_MAX)
+    non_official_count = len(results) - official_count
 
     return {
         "schema_version": 2,
@@ -306,7 +344,13 @@ def build_status(previous: dict, results: list[dict], checked: datetime) -> dict
         "last_checked_at": iso(checked),
         "last_change_at": last_change_at,
         "check_interval_hours": 6,
-        "source_health": {"total": len(results), "successful": ok_count, "failed": failed_count},
+        "source_health": {
+            "total": len(results),
+            "successful": ok_count,
+            "failed": failed_count,
+            "official_or_store": official_count,
+            "non_official_watch": non_official_count,
+        },
         "russian_text": {"supported": True, "label": "Русский интерфейс и субтитры доступны"},
         "russian_voice": {
             "supported": state == STATE_RELEASED,
@@ -316,7 +360,7 @@ def build_status(previous: dict, results: list[dict], checked: datetime) -> dict
         "known_voice_languages": ["Chinese", "English", "Japanese", "Korean"],
         "confirmed_event": confirmed_event,
         "state_changed": state_changed,
-        "methodology_version": "1.0.0",
+        "methodology_version": "1.1.0",
     }
 
 
@@ -338,9 +382,12 @@ def main() -> int:
     hub_soups: list[tuple[dict, BeautifulSoup]] = []
 
     def run_source(source: dict):
+        delay = float(config.get("request_delay_seconds", 0))
+        if delay > 0:
+            time.sleep(delay)
         return source, *check_single(build_session(), source, checked_at)
 
-    worker_count = max(2, min(int(config.get("max_workers", 6)), 8))
+    worker_count = max(2, min(int(config.get("max_workers", 6)), 10))
     with ThreadPoolExecutor(max_workers=worker_count) as executor:
         futures = [executor.submit(run_source, source) for source in sources]
         for future in as_completed(futures):
@@ -349,7 +396,6 @@ def main() -> int:
             if source.get("discover_articles") and soup is not None:
                 hub_soups.append((source, soup))
 
-    # Crawl only unseen articles plus a few newest links to catch edits, keeping traffic polite.
     for hub, soup in hub_soups:
         discovered = discover_article_links(soup, hub["url"], int(hub.get("max_discovered_links", 12)))
         previously_known = set(known_articles.get(hub["id"], []))
@@ -368,8 +414,6 @@ def main() -> int:
                 results.append(future.result())
         known_articles[hub["id"]] = list(dict.fromkeys([item["url"] for item in discovered] + list(previously_known)))[:500]
 
-    # Preserve last successful structured evidence when a transient source failure occurs,
-    # but clearly mark it stale instead of pretending the current request succeeded.
     old_by_id = {r.get("id"): r for r in previous_evidence.get("results", [])}
     for result in results:
         if result.get("ok"):
@@ -384,7 +428,7 @@ def main() -> int:
     evidence = {
         "schema_version": 2,
         "generated_at": checked_at,
-        "methodology": "Structured store fields + explicit multilingual voice-over patterns; generic Russian text support is ignored.",
+        "methodology": "Official/store sources can confirm; non-official sources are monitored only as unverified possible signals. Generic Russian text support is ignored.",
         "results": sorted(results, key=lambda r: (int(r.get("authority", 9)), str(r.get("category", "")), str(r.get("title", "")))),
     }
 
@@ -413,9 +457,7 @@ def main() -> int:
 
     prior_state = previous_status.get("state")
     should_alert = status["state"] in {STATE_POSSIBLE, STATE_ANNOUNCED, STATE_RELEASED} and status["state"] != prior_state
-    alert_sources = [
-        r for r in results if r.get("classification") in {"possible", "announced", "released"}
-    ][:5]
+    alert_sources = [r for r in results if r.get("classification") in {"possible", "announced", "released"}][:5]
     run_result = {
         "checked_at": checked_at,
         "state": status["state"],
@@ -426,7 +468,11 @@ def main() -> int:
         "alert_body": "\n\n".join(
             [
                 f"Detected state: **{status['state']}**",
-                *[f"- [{r['title']}]({r['url']}): {r.get('quote') or r.get('reason')}" for r in alert_sources],
+                *[
+                    f"- [{r['title']}]({r['url']}): {r.get('quote') or r.get('reason')}"
+                    + (" — requires official confirmation" if r.get("requires_official_confirmation") else "")
+                    for r in alert_sources
+                ],
                 "This is an automated signal. Verify the original source before publishing a final claim.",
             ]
         ),
