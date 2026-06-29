@@ -1,30 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="NTE Russian Voice Watch">
   <defs>
-    <radialGradient id="bg" cx="50%" cy="38%" r="70%">
-      <stop offset="0" stop-color="#111534"/>
-      <stop offset="0.6" stop-color="#090b1b"/>
+    <radialGradient id="bg" cx="50%" cy="38%" r="72%">
+      <stop offset="0" stop-color="#121638"/>
+      <stop offset="0.62" stop-color="#090b1b"/>
       <stop offset="1" stop-color="#050711"/>
     </radialGradient>
-    <linearGradient id="stroke" x1="92" y1="372" x2="420" y2="140" gradientUnits="userSpaceOnUse">
+    <linearGradient id="stroke" x1="96" y1="416" x2="416" y2="96" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#9b62ff"/>
-      <stop offset="0.48" stop-color="#b99cff"/>
-      <stop offset="1" stop-color="#56d9ff"/>
+      <stop offset="0.52" stop-color="#b79cff"/>
+      <stop offset="1" stop-color="#5ee2ff"/>
     </linearGradient>
-    <linearGradient id="inner" x1="176" y1="320" x2="356" y2="194" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#955cff"/>
-      <stop offset="0.55" stop-color="#b7a1ff"/>
-      <stop offset="1" stop-color="#73d8ff"/>
+    <linearGradient id="core" x1="184" y1="328" x2="328" y2="184" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8f5cff"/>
+      <stop offset="0.52" stop-color="#b7a4ff"/>
+      <stop offset="1" stop-color="#73e4ff"/>
     </linearGradient>
-    <filter id="glow" x="-55%" y="-55%" width="210%" height="210%">
-      <feGaussianBlur stdDeviation="9" result="blur"/>
-      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.56  0 0 0 0 0.34  0 0 0 0 1  0 0 0 .86 0" result="halo"/>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.55  0 0 0 0 0.34  0 0 0 0 1  0 0 0 .78 0" result="halo"/>
       <feMerge><feMergeNode in="halo"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
   <rect width="512" height="512" rx="92" fill="url(#bg)"/>
-  <path d="M0 0h512v512H0z" fill="none"/>
-  <g filter="url(#glow)">
-    <path d="M256 70c22 0 41 9 57 25l104 104c32 32 32 82 0 114L313 417c-32 32-82 32-114 0L95 313c-32-32-32-82 0-114L199 95c16-16 35-25 57-25Z" fill="rgba(5,7,17,.08)" stroke="url(#stroke)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
-    <path fill="url(#inner)" fill-rule="evenodd" d="M258 176c37 0 70 21 87 53 5 9 14 15 25 15 17 0 30 13 30 30s-13 30-30 30c-11 0-20 6-25 15-17 32-50 53-87 53-54 0-98-44-98-98s44-98 98-98Zm0 37c-34 0-61 27-61 61s27 61 61 61 61-27 61-61-27-61-61-61Zm113 47a16 16 0 1 0 0 32 16 16 0 0 0 0-32Z"/>
+  <g filter="url(#glow)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M256 66c15 0 29 6 40 17l133 133c11 11 17 25 17 40s-6 29-17 40L296 429c-11 11-25 17-40 17s-29-6-40-17L83 296c-11-11-17-25-17-40s6-29 17-40L216 83c11-11 25-17 40-17Z" stroke="url(#stroke)" stroke-width="18" fill="rgba(9,11,22,.14)"/>
+    <circle cx="256" cy="256" r="60" stroke="url(#core)" stroke-width="18"/>
+    <circle cx="256" cy="256" r="10" fill="url(#core)" stroke="none"/>
   </g>
 </svg>
