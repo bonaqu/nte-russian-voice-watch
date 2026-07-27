@@ -4,6 +4,7 @@ from scripts.cache_fingerprint import (
     CACHE_VERSION_PLACEHOLDER,
     render_service_worker,
     static_cache_fingerprint,
+    version_static_asset_urls,
 )
 
 
@@ -51,3 +52,30 @@ def test_static_cache_fingerprint_changes_with_asset_content(tmp_path):
     asset.write_text("new", encoding="utf-8")
 
     assert static_cache_fingerprint(tmp_path, ("asset.js",)) != old_fingerprint
+
+
+def test_versioned_asset_urls_bypass_an_old_service_worker_cache():
+    fingerprint = static_cache_fingerprint(ROOT)
+    source = (
+        '<script src="assets/js/ux-enhancements.js"></script>'
+        "<style>background:url('../brand/nte-symbol.svg')</style>"
+    )
+
+    rendered = version_static_asset_urls(source, fingerprint)
+
+    assert f"assets/js/ux-enhancements.js?v={fingerprint}" in rendered
+    assert f"../brand/nte-symbol.svg?v={fingerprint}" in rendered
+    assert version_static_asset_urls(rendered, fingerprint) == rendered
+
+
+def test_service_worker_precaches_the_same_versioned_script_url_as_html():
+    fingerprint = static_cache_fingerprint(ROOT)
+    html = version_static_asset_urls((ROOT / "index.html").read_text(encoding="utf-8"), fingerprint)
+    worker = version_static_asset_urls(
+        render_service_worker((ROOT / "sw.js").read_text(encoding="utf-8"), ROOT),
+        fingerprint,
+    )
+    script_url = f"assets/js/ux-enhancements.js?v={fingerprint}"
+
+    assert script_url in html
+    assert f"./{script_url}" in worker
