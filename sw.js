@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'nte-voice-v1.2.8';
+const CACHE_VERSION = 'nte-voice-__STATIC_CACHE_FINGERPRINT__';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DATA_CACHE = `${CACHE_VERSION}-data`;
 const STATIC_ASSETS = [
