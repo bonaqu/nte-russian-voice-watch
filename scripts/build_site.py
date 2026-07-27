@@ -3,6 +3,7 @@
 from pathlib import Path
 import shutil
 
+from cache_fingerprint import render_service_worker
 from generate_social_card import generate_status_card, generate_appeal_card
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -24,4 +25,11 @@ generate_appeal_card(DIST / "assets" / "og" / "appeal-card.png")
 (DIST / "data").mkdir()
 for name in ["status.json", "evidence.json", "history.json", "sources.json"]:
     shutil.copy2(ROOT / "data" / name, DIST / "data" / name)
+
+service_worker = DIST / "sw.js"
+service_worker.write_text(
+    render_service_worker(service_worker.read_text(encoding="utf-8"), ROOT),
+    encoding="utf-8",
+    newline="",
+)
 print(f"Built {DIST}")
