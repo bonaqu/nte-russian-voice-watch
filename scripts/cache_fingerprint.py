@@ -1,6 +1,7 @@
 """Create deterministic service-worker cache versions from static source files."""
 from hashlib import sha256
 from pathlib import Path
+import re
 
 
 CACHE_VERSION_PLACEHOLDER = "__STATIC_CACHE_FINGERPRINT__"
@@ -13,6 +14,9 @@ STATIC_CACHE_INPUTS = (
     "assets/js",
     "assets/brand",
     "assets/icons",
+)
+VERSIONABLE_ASSET_URL = re.compile(
+    r"(?P<url>assets/[^'\"\s)>]+|(?:\.\./)+(?:brand|icons)/[^'\"\s)>]+|manifest\.webmanifest(?:\?[^'\"\s)>]+)?)"
 )
 
 
@@ -43,3 +47,15 @@ def render_service_worker(source: str, root: Path) -> str:
     if source.count(CACHE_VERSION_PLACEHOLDER) != 1:
         raise ValueError("Service worker must contain exactly one cache-version placeholder")
     return source.replace(CACHE_VERSION_PLACEHOLDER, static_cache_fingerprint(root))
+
+
+def version_static_asset_urls(source: str, fingerprint: str) -> str:
+    """Give static asset requests content-versioned URLs that bypass an old worker."""
+
+    def add_version(match: re.Match) -> str:
+        url = match.group("url")
+        if "?v=" in url:
+            return url
+        return f"{url}?v={fingerprint}"
+
+    return VERSIONABLE_ASSET_URL.sub(add_version, source)
