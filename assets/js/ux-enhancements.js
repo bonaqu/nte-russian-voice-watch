@@ -91,11 +91,53 @@
   dict.ko = { ...dict.en, locale: 'ko-KR', last: '마지막 확인', faq: 'FAQ', line: '주요 지점', release: '출시', today: '오늘', days: '일' };
   dict.ja = { ...dict.en, locale: 'ja-JP', last: '最終チェック', faq: 'FAQ', line: '主な節目', release: 'リリース', today: '今日', days: '日' };
 
+  const STATE_LABELS = {
+    ru: {
+      NO_RUSSIAN_VOICE: 'Русской озвучки нет',
+      POSSIBLE_MENTION: 'Нужно проверить сигнал',
+      CONFIRMED_ANNOUNCEMENT: 'Русская озвучка анонсирована',
+      RUSSIAN_VOICE_RELEASED: 'Русская озвучка доступна',
+      UNKNOWN: 'Статус не подтверждён'
+    },
+    zh: {
+      NO_RUSSIAN_VOICE: '没有俄语配音',
+      POSSIBLE_MENTION: '需要核查信号',
+      CONFIRMED_ANNOUNCEMENT: '俄语配音已公告',
+      RUSSIAN_VOICE_RELEASED: '俄语配音可用',
+      UNKNOWN: '状态未确认'
+    },
+    en: {
+      NO_RUSSIAN_VOICE: 'No Russian voice-over',
+      POSSIBLE_MENTION: 'Signal needs verification',
+      CONFIRMED_ANNOUNCEMENT: 'Russian voice-over announced',
+      RUSSIAN_VOICE_RELEASED: 'Russian voice-over available',
+      UNKNOWN: 'Status unconfirmed'
+    },
+    ko: {
+      NO_RUSSIAN_VOICE: '러시아어 음성 없음',
+      POSSIBLE_MENTION: '신호 확인 필요',
+      CONFIRMED_ANNOUNCEMENT: '러시아어 음성 발표됨',
+      RUSSIAN_VOICE_RELEASED: '러시아어 음성 사용 가능',
+      UNKNOWN: '상태 미확인'
+    },
+    ja: {
+      NO_RUSSIAN_VOICE: 'ロシア語音声なし',
+      POSSIBLE_MENTION: 'シグナル確認が必要',
+      CONFIRMED_ANNOUNCEMENT: 'ロシア語音声が発表済み',
+      RUSSIAN_VOICE_RELEASED: 'ロシア語音声が利用可能',
+      UNKNOWN: 'ステータス未確認'
+    }
+  };
+
   function lang() {
     const h = document.documentElement.lang.toLowerCase();
     return h.startsWith('zh') ? 'zh' : h.startsWith('ko') ? 'ko' : h.startsWith('ja') ? 'ja' : h.startsWith('en') ? 'en' : 'ru';
   }
   function t(k) { return dict[lang()]?.[k] ?? dict.en[k] ?? k; }
+  function stateLabel(state) {
+    const code = state || 'UNKNOWN';
+    return STATE_LABELS[lang()]?.[code] ?? STATE_LABELS.en[code] ?? STATE_LABELS[lang()].UNKNOWN;
+  }
   function esc(v) { return String(v ?? '').replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#039;'); }
   function fmt(v, dateOnly = false) {
     if (!v) return '—';
@@ -116,7 +158,7 @@
   function renderStatus(s) {
     const h = s.source_health || {}, n = $('#uxStatusPanel');
     if (!n) return;
-    n.innerHTML = `<section class="ux-panel glass-panel"><div class="ux-panel-head"><div><span class="micro-label">STATUS REPORT</span><h2>${esc(t('last'))}</h2><p>${esc(t('lead'))}</p></div><span class="ux-pill">${esc(t('rule'))}</span></div><div class="ux-compact-report"><article class="ux-stat"><small>${esc(t('checked'))}</small><strong>${esc(fmt(s.last_checked_at))}</strong><span>${esc(s.state_label_ru || s.state)}</span></article><article class="ux-stat"><small>${esc(t('off'))}</small><strong>${esc((h.successful ?? 0) + '/' + (h.total ?? 0))}</strong><span>${esc(t('offHint'))}</span></article><article class="ux-stat"><small>${esc(t('watch'))}</small><strong>${esc(h.non_official_watch ?? 0)}</strong><span>${esc(t('watchHint'))}</span></article><article class="ux-stat"><small>${esc(t('sig'))}</small><strong>${esc(h.unverified_watch_signals ?? 0)}</strong><span>${esc(t('sigHint'))}</span></article></div></section>`;
+    n.innerHTML = `<section class="ux-panel glass-panel"><div class="ux-panel-head"><div><span class="micro-label">STATUS REPORT</span><h2>${esc(t('last'))}</h2><p>${esc(t('lead'))}</p></div><span class="ux-pill">${esc(t('rule'))}</span></div><div class="ux-compact-report"><article class="ux-stat"><small>${esc(t('checked'))}</small><strong>${esc(fmt(s.last_checked_at))}</strong><span>${esc(stateLabel(s.state))}</span></article><article class="ux-stat"><small>${esc(t('off'))}</small><strong>${esc((h.successful ?? 0) + '/' + (h.total ?? 0))}</strong><span>${esc(t('offHint'))}</span></article><article class="ux-stat"><small>${esc(t('watch'))}</small><strong>${esc(h.non_official_watch ?? 0)}</strong><span>${esc(t('watchHint'))}</span></article><article class="ux-stat"><small>${esc(t('sig'))}</small><strong>${esc(h.unverified_watch_signals ?? 0)}</strong><span>${esc(t('sigHint'))}</span></article></div></section>`;
   }
 
   function renderTimeline(s) {
