@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-08-30T21:54:21Z",
+  "generated_at": "2026-08-31T07:02:42Z",
   "methodology": "Public status is based only on official sources and store metadata. Community/media sources are watchlist-only: they may surface an unverified signal, but cannot change the main status without official/store confirmation.",
   "results": [
     {
@@ -12,7 +12,7 @@
       "authority": 1,
       "source_type": "official",
       "requires_official_confirmation": false,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "not_listed",
@@ -30,7 +30,7 @@
       "authority": 1,
       "source_type": "official",
       "requires_official_confirmation": false,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "neutral",
@@ -48,7 +48,7 @@
       "authority": 1,
       "source_type": "official",
       "requires_official_confirmation": false,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "neutral",
@@ -66,7 +66,7 @@
       "authority": 1,
       "source_type": "official",
       "requires_official_confirmation": false,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "neutral",
@@ -84,7 +84,7 @@
       "authority": 1,
       "source_type": "official",
       "requires_official_confirmation": false,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "neutral",
@@ -102,7 +102,7 @@
       "authority": 1,
       "source_type": "official",
       "requires_official_confirmation": false,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "neutral",
@@ -120,7 +120,7 @@
       "authority": 1,
       "source_type": "official",
       "requires_official_confirmation": false,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "neutral",
@@ -138,7 +138,7 @@
       "authority": 1,
       "source_type": "store",
       "requires_official_confirmation": false,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "neutral",
@@ -156,14 +156,14 @@
       "authority": 1,
       "source_type": "store",
       "requires_official_confirmation": false,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "not_listed",
       "confidence": "high",
       "quote": "Steam language row — Russian: interface=True, full_audio=False, subtitles=True",
       "reason": "Steam Russian row does not mark Full Audio",
-      "content_hash": "8124e831ffb3914c16da4acbc3858ba200f0f599ee18f48d589c1d59b81a5de2"
+      "content_hash": "f8414144702abee3f58881e0ca2ec211a8e825464c9966f10c1a52b178297cfc"
     },
     {
       "id": "steam-global-jp",
@@ -174,14 +174,14 @@
       "authority": 1,
       "source_type": "store",
       "requires_official_confirmation": false,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "neutral",
       "confidence": "low",
       "quote": "Steam localized page is checked through the structured Full Audio column.",
       "reason": "Russian row was not found in Steam table",
-      "content_hash": "18607020fb06f09661e74327ab50b45f6592c5f528e3259aa3f2d9cc71566559"
+      "content_hash": "a82ec9c084750a15a31da251789f5474a5d71386939155e8aef1398e30eb5650"
     },
     {
       "id": "steam-global-kr",
@@ -192,14 +192,14 @@
       "authority": 1,
       "source_type": "store",
       "requires_official_confirmation": false,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "neutral",
       "confidence": "low",
       "quote": "Steam localized page is checked through the structured Full Audio column.",
       "reason": "Russian row was not found in Steam table",
-      "content_hash": "480ca3d9b016d8d6ee785af04b9e1d75ee2eacae243432affbb792cde13213ef"
+      "content_hash": "49193c5c21fc43d05d2a9e4df2b85ebbd5cb50cd89b4db8c45298e5d9d88f22c"
     },
     {
       "id": "steam-global-ru",
@@ -210,14 +210,14 @@
       "authority": 1,
       "source_type": "store",
       "requires_official_confirmation": false,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "not_listed",
       "confidence": "high",
       "quote": "Steam language row — русский: interface=True, full_audio=False, subtitles=True",
       "reason": "Steam Russian row does not mark Full Audio",
-      "content_hash": "f819196d63e7b942b3cf2060042ebe63124a4a56ef73ec1aba2097ba9af8911e"
+      "content_hash": "f3a1efa2371c5bba3b8ee6a525bcdd41425f7234f4c8cfe417b2bb667a596e5b"
     },
     {
       "id": "steam-global-cn",
@@ -228,7 +228,7 @@
       "authority": 1,
       "source_type": "store",
       "requires_official_confirmation": false,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "neutral",
@@ -246,14 +246,14 @@
       "authority": 3,
       "source_type": "watchlist",
       "requires_official_confirmation": true,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "possible",
       "confidence": "low",
-      "quote": "异环 俄语 配音 - TapTap 首页 排行榜 发现 云游戏 PC 游戏 动态 发布 论坛 TapTap 制造 聚光灯 GameJam 开发者中心 创作者中心 营业执照 ｜ 沪 ICP 备 16012525 号 ｜ 沪网文（2025）0236-071 号 ｜ 增值电信业务经营许可证：沪 B2-20170322 B1-20204119",
+      "quote": "异环 俄语 配音 - TapTap 下载 App 下载手机 APP 下载 PC 版 首页 排行榜 今日游戏 云游戏 PC 游戏 发布 社区 TapTap 制造 聚光灯 GameJam 开发者中心 创作者中心 活动中心 反馈 服务 全部 游戏 社区 用户 空空如也 没有搜索到相关内容 热搜 1 我的世界：移动版 2 三角洲行动 3 《控",
       "reason": "unverified non-official mention; explicit Russian voice pairing found without clear timing",
-      "content_hash": "d1959fc306949e31179d1c956b779666d907d1d379078324d78a69ba93ae17c5"
+      "content_hash": "61af3660a1f8a466495b3d0a23fb6a949fda1adf10cbcbb294bfc92bb6fbfdb6"
     },
     {
       "id": "pcgamer-search",
@@ -264,7 +264,7 @@
       "authority": 3,
       "source_type": "watchlist",
       "requires_official_confirmation": true,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "possible",
@@ -282,14 +282,14 @@
       "authority": 3,
       "source_type": "watchlist",
       "requires_official_confirmation": true,
-      "checked_at": "2026-08-30T21:54:21Z",
+      "checked_at": "2026-08-31T07:02:42Z",
       "ok": true,
       "http_status": 200,
       "classification": "possible",
       "confidence": "low",
       "quote": "이환 러시아어 음성 - 인벤 통합검색 인벤 전체 사이트 맵 통합검색 뉴스 게시판 뉴스 (2026-08-31 ~ 2025-09-01) \"이환 러시아어 음성\" 에 대한 검색 결과가 없습니다. - 뉴스 검색은 1년 단위로 지원됩니다. - 아래 \"계속 검색하기\" 를 누르거나 검색 조건을 바꿔주세요. - 단어를",
       "reason": "unverified non-official mention; explicit Russian voice pairing found without clear timing",
-      "content_hash": "c2b1bef03810bcddeeae96beeeb144959e7cf43f31d6f68d371e81fd0f8aa7fe"
+      "content_hash": "95507b0e6a3f5e10a015cd5638b5519f24a0150d0a15c576b154529f8d0a5e05"
     }
   ]
 }
