@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-09-15T17:40:24Z",
+  "generated_at": "2026-09-15T22:14:10Z",
   "entries": [
     {
       "checked_at": "2026-06-21T18:06:40Z",
@@ -3543,6 +3543,17 @@
       "changed": true,
       "elapsed_seconds": 12062424,
       "evidence_signature": "a6dea9a4bce38929"
+    },
+    {
+      "checked_at": "2026-09-15T22:14:10Z",
+      "state": "UNKNOWN",
+      "state_label_ru": "Статус временно не подтверждён",
+      "confidence": "low",
+      "successful": 9,
+      "failed": 4,
+      "changed": true,
+      "elapsed_seconds": 12078850,
+      "evidence_signature": "6b4fd9baa69bac53"
     }
   ]
 }
