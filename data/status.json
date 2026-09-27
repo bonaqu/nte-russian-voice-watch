@@ -15,7 +15,7 @@
   "state": "NO_RUSSIAN_VOICE",
   "state_label_ru": "Русской озвучки нет",
   "confidence": "high",
-  "last_checked_at": "2026-09-27T06:37:05Z",
+  "last_checked_at": "2026-09-27T13:02:15Z",
   "last_change_at": "2026-09-16T06:02:51Z",
   "check_interval_hours": 6,
   "source_health": {
@@ -45,5 +45,5 @@
   "confirmed_event": null,
   "state_changed": false,
   "methodology_version": "1.1.0",
-  "evidence_signature": "bcdafb8cc485832c8f939a7509605c851e592236c24ad2701209989f204f9348"
+  "evidence_signature": "79c253f4ad00c8ac376bb6d3f9b43e2dacc3f3ac46e24cee43faae06670abcae"
 }
