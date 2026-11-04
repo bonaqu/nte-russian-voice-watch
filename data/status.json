@@ -15,13 +15,13 @@
   "state": "NO_RUSSIAN_VOICE",
   "state_label_ru": "Русской озвучки нет",
   "confidence": "high",
-  "last_checked_at": "2026-11-03T20:06:38Z",
+  "last_checked_at": "2026-11-04T07:29:52Z",
   "last_change_at": "2026-09-16T06:02:51Z",
   "check_interval_hours": 6,
   "source_health": {
     "total": 13,
-    "successful": 13,
-    "failed": 0,
+    "successful": 12,
+    "failed": 1,
     "official_or_store": 13,
     "non_official_watch": 12,
     "non_official_successful": 8,
@@ -45,5 +45,5 @@
   "confirmed_event": null,
   "state_changed": false,
   "methodology_version": "1.1.0",
-  "evidence_signature": "0f43eebfbc44dca7f4e2ecdeb2b42bde83f24f38fc785d999f067906de15c15f"
+  "evidence_signature": "12f1da29647611a964974920d901994d50ca7bf2a0d58ceba3485bbac180c531"
 }
