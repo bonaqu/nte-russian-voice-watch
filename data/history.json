@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "generated_at": "2026-11-25T22:33:13Z",
+  "generated_at": "2026-11-26T09:31:22Z",
   "entries": [
     {
       "checked_at": "2026-06-21T18:06:40Z",
@@ -5919,6 +5919,17 @@
       "changed": true,
       "elapsed_seconds": 18214393,
       "evidence_signature": "752f380850f0ed21"
+    },
+    {
+      "checked_at": "2026-11-26T09:31:22Z",
+      "state": "NO_RUSSIAN_VOICE",
+      "state_label_ru": "Русской озвучки нет",
+      "confidence": "high",
+      "successful": 13,
+      "failed": 0,
+      "changed": true,
+      "elapsed_seconds": 18253882,
+      "evidence_signature": "cc1d55d41f0b30c0"
     }
   ]
 }
